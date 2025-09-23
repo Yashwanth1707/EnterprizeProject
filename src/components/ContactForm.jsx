@@ -154,7 +154,6 @@ export default function ContactForm({ onClose }) {
             value={form.message}
             onChange={handleChange}
             disabled={loading}
-            required
             placeholder="Your message / requirements"
             className="w-full resize-y rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-500 transition duration-150"
           ></textarea>
@@ -169,9 +168,8 @@ export default function ContactForm({ onClose }) {
 
           {status && (
             <p
-              className={`mt-6 text-center font-semibold ${
-                status.success ? "text-green-600" : "text-red-600"
-              }`}
+              className={`mt-6 text-center font-semibold ${status.success ? "text-green-600" : "text-red-600"
+                }`}
             >
               {status.message}
             </p>
