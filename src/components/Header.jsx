@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ContactForm from "./ContactForm"; // Your modal form component
+import ContactForm from "./ContactForm";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,11 +10,9 @@ export default function Header() {
     { id: "products", label: "Products", icon: "☀️" },
     { id: "services", label: "Services", icon: "🔧" },
     { id: "about", label: "About", icon: "👥" },
-    // Make Contact item special: no id, opens modal
     { id: null, label: "Contact", icon: "📞" },
   ];
 
-  // Smooth scroll helper; closes mobile menu
   const scrollToSection = (id) => {
     if (!id) return;
     const element = document.getElementById(id);
@@ -24,7 +22,6 @@ export default function Header() {
     }
   };
 
-  // Handle nav click; if Contact, open modal
   const handleNavClick = (item) => {
     if (item.label === "Contact") {
       setContactModalOpen(true);
@@ -36,22 +33,25 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 transition-all duration-300 bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+      <header className="sticky top-0 z-50 transition-all duration-300 bg-white shadow-sm w-full">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col">
-            {/* Top bar */}
-            <div className="flex justify-between items-center py-5">
+            <div className="flex justify-between items-center py-2">
               {/* Logo */}
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg flex items-center justify-center shadow-sm">
-                  <span className="text-lg">☀️</span>
-                </div>
+              <div className="flex items-center space-x-4">
+                <a href="#home">
+                  <img
+                    className="w-24 h-24 rounded-full shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] transition-shadow duration-300 hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)]"
+                    src="/images/logo.png"
+                    alt="Mobile Logo"
+                  />
+                </a>
                 <div className="flex flex-col">
-                  <h1 className="text-2xl md:text-3xl font-light text-slate-800 tracking-wide">
-                    <span className="font-semibold">Solar</span> Water Heater
+                  <h1 className="text-3xl md:text-4xl font-light text-slate-900 tracking-wide leading-tight">
+                    <span className="font-semibold">Bhairava</span> Enterprises
                   </h1>
-                  <p className="text-xs text-slate-500 font-light hidden sm:block">
-                    Premium Energy Solutions
+                  <p className="text-sm md:text-base text-slate-600 font-light hidden sm:block leading-relaxed mt-1">
+                    Energy and safety with bhairava
                   </p>
                 </div>
               </div>
@@ -64,16 +64,14 @@ export default function Header() {
                     onClick={() => handleNavClick(item)}
                     className="group relative flex items-center space-x-2 px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:text-slate-900 focus:outline-none"
                   >
-                    <span className="text-sm opacity-70 group-hover:opacity-100 transition-opacity">
-                      {item.icon}
-                    </span>
+                    <span className="text-sm opacity-70 group-hover:opacity-100 transition-opacity">{item.icon}</span>
                     <span className="tracking-wide">{item.label}</span>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-px bg-slate-400 group-hover:w-3/4 transition-all duration-300"></div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-slate-400 group-hover:w-3/4 transition-all duration-300" />
                   </button>
                 ))}
               </nav>
 
-              {/* Mobile menu button */}
+              {/* Mobile Menu Button */}
               <button
                 className={`md:hidden p-2 rounded-lg transition-all duration-200 focus:outline-none text-slate-600 hover:bg-slate-50 hover:text-slate-800 ${
                   isMenuOpen ? "bg-slate-100 text-slate-700" : ""
@@ -82,9 +80,7 @@ export default function Header() {
                 aria-label="Toggle Menu"
               >
                 <svg
-                  className={`w-5 h-5 transition-transform duration-300 ${
-                    isMenuOpen ? "rotate-90" : ""
-                  }`}
+                  className={`w-5 h-5 transition-transform duration-300 ${isMenuOpen ? "rotate-90" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.5"
@@ -94,11 +90,7 @@ export default function Header() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d={
-                      isMenuOpen
-                        ? "M6 18L18 6M6 6l12 12"
-                        : "M4 6h16M4 12h16M4 18h16"
-                    }
+                    d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                   />
                 </svg>
               </button>
@@ -107,25 +99,23 @@ export default function Header() {
             {/* Mobile Sidebar */}
             {isMenuOpen && (
               <div className="md:hidden fixed inset-0 z-50 flex">
-                {/* Overlay */}
-                <div
-                  className="flex-1 bg-black/10 backdrop-blur-sm"
-                  onClick={() => setIsMenuOpen(false)}
-                  aria-label="Close menu overlay"
-                />
+                <div className="flex-1 bg-black/10 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} aria-label="Close menu overlay" />
                 <div
                   className={`w-72 bg-white shadow-xl transform transition-all duration-500 ease-out ${
                     isMenuOpen ? "translate-x-0" : "translate-x-full"
                   }`}
                 >
                   <div className="bg-slate-50 border-b border-slate-100 p-6 flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center">
-                        <span className="text-sm">☀️</span>
-                      </div>
+                    {/* Logo inside mobile menu modal */}
+                    <div className="flex items-center space-x-4">
+                      <img
+                        className="w-24 h-24 rounded-full shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] transition-shadow duration-300 hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)]"
+                        src="/images/logo.png"
+                        alt="Mobile Logo"
+                      />
                       <div>
-                        <h2 className="font-semibold text-slate-800">Solar Water Heater</h2>
-                        <p className="text-xs text-slate-500">Premium Energy Solutions</p>
+                        <h2 className="font-light text-2xl text-slate-900">Bhairava EnterPrises</h2>
+                        <p className="text-base text-slate-600 font-light mt-1">Energy and safety with bhairava</p>
                       </div>
                     </div>
                     <button
@@ -133,11 +123,7 @@ export default function Header() {
                       className="w-8 h-8 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg flex items-center justify-center transition-colors"
                       aria-label="Close menu"
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -175,7 +161,6 @@ export default function Header() {
                       </button>
                     ))}
 
-                    {/* Mobile Contact Us Button */}
                     <div className="px-6 mt-8">
                       <button
                         onClick={() => {
@@ -195,7 +180,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Contact Form Modal */}
       {contactModalOpen && <ContactForm onClose={() => setContactModalOpen(false)} />}
     </>
   );

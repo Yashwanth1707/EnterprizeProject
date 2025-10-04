@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ContactForm from "./ContactForm"; // ✅ Import your ContactForm
 
+// Catalog: Solar + Chimney + Water Purifiers
 const products = [
+  // Solar
   {
     id: 1,
     name: "Premium Solar Water Heater 200L",
@@ -62,64 +64,128 @@ const products = [
       "Maximum energy savings",
     ],
   },
+
+  // Chimneys
   {
     id: 4,
-    name: "Electric Instant Geyser 15L",
+    name: "60 cm Filterless Auto-Clean Chimney",
     description:
-      "Instant heating electric geyser with 15L capacity. Perfect for quick hot water needs.",
-    price: 8999,
-    originalPrice: 10999,
+      "Sleek wall-mount chimney with filterless auto-clean, ideal for apartments and compact kitchens.",
+    price: 13999,
+    originalPrice: 16999,
     image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop",
-    category: "geyser",
-    efficiency: "95%",
+      "https://images.unsplash.com/photo-1590779033100-9f60a05a0136?w=500&h=300&fit=crop",
+    category: "chimney",
+    efficiency: "1200 m³/hr",
     warranty: "5 Years",
     features: [
-      "Instant heating technology",
-      "Energy efficient",
-      "5-year warranty",
-      "Temperature display",
-      "Safety cut-off",
+      "Filterless auto-clean",
+      "Gesture & touch controls",
+      "LED lighting",
+      "Low noise BLDC motor",
+      "Duct/ductless compatible",
     ],
   },
   {
     id: 5,
-    name: "Storage Electric Geyser 25L",
+    name: "90 cm Baffle Filter Chimney",
     description:
-      "High-quality storage geyser with 25L capacity and advanced heating elements.",
-    price: 12999,
-    originalPrice: 14999,
+      "Wide coverage chimney with baffle filter and powerful suction for heavy Indian cooking.",
+    price: 18999,
+    originalPrice: 21999,
     image:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop",
-    category: "geyser",
-    efficiency: "92%",
+      "https://images.unsplash.com/photo-1600585154340-1e5d3c0eac81?w=500&h=300&fit=crop",
+    category: "chimney",
+    efficiency: "1500 m³/hr",
     warranty: "7 Years",
     features: [
-      "Storage heating",
-      "Anti-corrosion coating",
-      "7-year warranty",
-      "Multiple safety features",
-      "Energy star rated",
+      "Baffle filter",
+      "Thermal auto-clean",
+      "Oil collector tray",
+      "Feather-touch panel",
+      "Uniform LED illumination",
     ],
   },
   {
     id: 6,
-    name: "Gas Water Heater Instant",
+    name: "Island Chimney 90 cm Pro",
     description:
-      "Efficient gas-powered instant water heater with automatic ignition and safety features.",
-    price: 18999,
-    originalPrice: 21999,
+      "Premium island-mounted chimney with high suction and smart auto-clean for open kitchens.",
+    price: 27999,
+    originalPrice: 31999,
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop",
-    category: "geyser",
-    efficiency: "88%",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&h=300&fit=crop",
+    category: "chimney",
+    efficiency: "1600 m³/hr",
     warranty: "6 Years",
     features: [
-      "Instant gas heating",
-      "Automatic ignition",
-      "6-year warranty",
-      "Flame failure safety",
-      "Low gas consumption",
+      "Island mount design",
+      "Heat auto-clean",
+      "3-speed + boost",
+      "Digital airflow indicator",
+      "Quiet performance",
+    ],
+  },
+
+  // Water Purifiers
+  {
+    id: 7,
+    name: "RO+UV+UF+TDS Smart 7L",
+    description:
+      "Multi-stage purification with mineral retention and UV-in-tank for continuous protection.",
+    price: 12999,
+    originalPrice: 14999,
+    image:
+      "https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=500&h=300&fit=crop",
+    category: "purifier",
+    efficiency: "7 L | 15 LPH",
+    warranty: "1 Year",
+    features: [
+      "RO+UV+UF+TDS control",
+      "UV LED in storage tank",
+      "Mineral retention",
+      "TDS up to 1500 ppm",
+      "Wall-mount design",
+    ],
+  },
+  {
+    id: 8,
+    name: "Copper+ Mineral RO 8L",
+    description:
+      "Adds copper infusion with advanced RO+UV+UF purification for great taste and health.",
+    price: 15499,
+    originalPrice: 18499,
+    image:
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&h=300&fit=crop",
+    category: "purifier",
+    efficiency: "8 L | 18 LPH",
+    warranty: "2 Years",
+    features: [
+      "RO+UV+UF + Copper",
+      "Smart TDS control",
+      "Filter life indicator",
+      "UV-in-tank hygiene",
+      "Up to 2000 ppm TDS",
+    ],
+  },
+  {
+    id: 9,
+    name: "Compact UV/UF Purifier 6L",
+    description:
+      "Energy-efficient UV/UF system for low TDS municipal water; sleek compact body.",
+    price: 7999,
+    originalPrice: 9999,
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=500&h=300&fit=crop",
+    category: "purifier",
+    efficiency: "6 L | 12 LPH",
+    warranty: "1 Year",
+    features: [
+      "UV sterilization",
+      "UF membrane filtration",
+      "No RO wastage",
+      "Best for TDS < 200 ppm",
+      "Low maintenance",
     ],
   },
 ];
@@ -134,17 +200,21 @@ export default function ProductList() {
       ? products
       : products.filter((product) => product.category === selectedCategory);
 
+  // Category gradients: sunny solar, sleek chimney, aqua purifier
   const getCategoryColor = (category) => {
     switch (category) {
       case "solar":
         return "from-yellow-400 to-orange-500";
-      case "geyser":
-        return "from-blue-400 to-blue-600";
+      case "chimney":
+        return "from-slate-600 to-gray-900";
+      case "purifier":
+        return "from-teal-400 to-cyan-500";
       default:
         return "from-gray-400 to-gray-600";
     }
   };
 
+  // Category badges
   const getCategoryBadge = (category) => {
     switch (category) {
       case "solar":
@@ -153,19 +223,32 @@ export default function ProductList() {
           label: "Solar",
           bg: "bg-yellow-100 text-yellow-800",
         };
-      case "geyser":
+      case "chimney":
         return {
-          icon: "🔥",
-          label: "Electric/Gas",
-          bg: "bg-blue-100 text-blue-800",
+          icon: "🏠",
+          label: "Kitchen Chimney",
+          bg: "bg-slate-100 text-slate-800",
+        };
+      case "purifier":
+        return {
+          icon: "💧",
+          label: "Water Purifier",
+          bg: "bg-teal-100 text-teal-800",
         };
       default:
         return {
-          icon: "💧",
-          label: "Water Heater",
+          icon: "🛠️",
+          label: "Product",
           bg: "bg-gray-100 text-gray-800",
         };
     }
+  };
+
+  // Helper to label the left spec box dynamically
+  const getPrimarySpecLabel = (category) => {
+    if (category === "chimney") return "Max Suction";
+    if (category === "purifier") return "Storage/Flow";
+    return "Efficiency";
   };
 
   return (
@@ -174,18 +257,16 @@ export default function ProductList() {
       className="py-16 bg-gradient-to-br from-blue-50 via-white to-green-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Our Premium Products
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Discover our range of high-quality solar water heaters and electric
-            geysers designed to meet all your hot water needs efficiently and
-            sustainably.
+            Explore solar heaters, kitchen chimneys, and water purifiers designed for efficient, healthy, and sustainable homes.
           </p>
 
-          {/* Category Filter Buttons */}
+          {/* Filters */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <button
               onClick={() => setSelectedCategory("all")}
@@ -208,19 +289,29 @@ export default function ProductList() {
               ☀️ Solar Heaters
             </button>
             <button
-              onClick={() => setSelectedCategory("geyser")}
+              onClick={() => setSelectedCategory("chimney")}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                selectedCategory === "geyser"
-                  ? "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg"
-                  : "bg-white text-gray-600 border-2 border-gray-200 hover:border-blue-300"
+                selectedCategory === "chimney"
+                  ? "bg-gradient-to-r from-slate-600 to-gray-900 text-white shadow-lg"
+                  : "bg-white text-gray-600 border-2 border-gray-200 hover:border-slate-400"
               }`}
             >
-              🔥 Electric & Gas
+              🏠 Kitchen Chimneys
+            </button>
+            <button
+              onClick={() => setSelectedCategory("purifier")}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                selectedCategory === "purifier"
+                  ? "bg-gradient-to-r from-teal-400 to-cyan-500 text-white shadow-lg"
+                  : "bg-white text-gray-600 border-2 border-gray-200 hover:border-teal-300"
+              }`}
+            >
+              💧 Water Purifiers
             </button>
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => {
             const badge = getCategoryBadge(product.category);
@@ -230,37 +321,31 @@ export default function ProductList() {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer transform hover:-translate-y-2"
                 onClick={() => setSelectedProduct(product)}
               >
-                {/* Image Container */}
+                {/* Image */}
                 <div className="relative overflow-hidden h-48">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
-
-                  {/* Category Badge */}
                   <div
                     className={`absolute top-3 left-3 px-3 py-1 rounded-full text-sm font-semibold ${badge.bg}`}
                   >
                     {badge.icon} {badge.label}
                   </div>
-
-                  {/* Discount Badge */}
                   {product.originalPrice && (
                     <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                       SAVE ₹{product.originalPrice - product.price}
                     </div>
                   )}
-
-                  {/* Gradient Overlay */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(
                       product.category
                     )} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-                  ></div>
+                  />
                 </div>
 
-                {/* Product Info */}
+                {/* Info */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {product.name}
@@ -269,21 +354,23 @@ export default function ProductList() {
                     {product.description}
                   </p>
 
-                  {/* Specs */}
-                  <div className="flex justify-between items-center mb-4">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-green-600">
-                        {product.efficiency}
+                    {/* Specs */}
+                    <div className="flex justify-between items-center mb-4">
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-green-600">
+                          {product.efficiency}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {getPrimarySpecLabel(product.category)}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-500">Efficiency</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-blue-600">
-                        {product.warranty}
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-blue-600">
+                          {product.warranty}
+                        </div>
+                        <div className="text-xs text-gray-500">Warranty</div>
                       </div>
-                      <div className="text-xs text-gray-500">Warranty</div>
                     </div>
-                  </div>
 
                   {/* Price */}
                   <div className="flex items-center justify-between mb-4">
@@ -299,7 +386,6 @@ export default function ProductList() {
                     </div>
                   </div>
 
-                  {/* Action Button */}
                   <button
                     className={`w-full bg-gradient-to-r ${getCategoryColor(
                       product.category
@@ -313,11 +399,10 @@ export default function ProductList() {
           })}
         </div>
 
-        {/* Product Details Modal */}
+        {/* Modal */}
         {selectedProduct && (
           <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
             <div className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
                 className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 text-xl z-10 transition-colors"
@@ -325,7 +410,6 @@ export default function ProductList() {
                 ×
               </button>
 
-              {/* Image */}
               <div className="relative h-64">
                 <img
                   src={selectedProduct.image}
@@ -336,9 +420,7 @@ export default function ProductList() {
                   className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(
                     selectedProduct.category
                   )} opacity-20`}
-                ></div>
-
-                {/* Category Badge */}
+                />
                 <div
                   className={`absolute top-4 left-4 px-4 py-2 rounded-full text-sm font-semibold ${
                     getCategoryBadge(selectedProduct.category).bg
@@ -349,7 +431,6 @@ export default function ProductList() {
                 </div>
               </div>
 
-              {/* Content */}
               <div className="p-8">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">
                   {selectedProduct.name}
@@ -365,7 +446,11 @@ export default function ProductList() {
                       {selectedProduct.efficiency}
                     </div>
                     <div className="text-sm text-green-700">
-                      Efficiency Rating
+                      {selectedProduct.category === "chimney"
+                        ? "Max Suction"
+                        : selectedProduct.category === "purifier"
+                        ? "Storage/Flow"
+                        : "Efficiency Rating"}
                     </div>
                   </div>
                   <div className="bg-blue-50 p-4 rounded-lg text-center">
@@ -394,7 +479,7 @@ export default function ProductList() {
                   </ul>
                 </div>
 
-                {/* Price and Action */}
+                {/* Price + Actions */}
                 <div className="border-t pt-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
