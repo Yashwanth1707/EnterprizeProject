@@ -97,7 +97,7 @@ export default function HomeSection() {
             className="text-xs md:text-sm uppercase tracking-widest text-slate-500"
             variants={itemVariants}
           >
-            Trusted since 2020
+            Trusted since 2021
           </motion.span>
         </div>
 
