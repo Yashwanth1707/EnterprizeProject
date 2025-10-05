@@ -2,18 +2,46 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
 const inquiryOptions = [
+  // Solar heaters (Supreme)
+  "Supreme Solar GL ETC 200 LPD",
+  "Supreme Solar FPC 250 LPD",
+  "Supreme Solar ETC 300 LPD",
+  "Commercial Solar Water Heater 3000 LPD",
+  "Heat Pump Water Heater 200L",
+
+  // Kitchen chimneys (Supreme)
+  "Supreme ECO H4 60 cm Auto‑Clean",
+  "Supreme FIGO XL 90 cm Touch",
+  "Supreme CROWN X 60 cm",
+
+  // Water purifiers
+  "KENT Grand Plus RO+UV+UF+TDS 8L",
+  "Aquaguard RO+UV+UF 7L",
+  "Purocis RO+UV 8L",
+
+  // Luminous UPS/Inverters
+  "Luminous Zelio+ 1100 Pure Sine Wave",
+  "Luminous Eco Watt Neo 1050",
+  "Luminous Li‑ON 1250 (In‑built Lithium)",
+
+  // Generic solar/geyser items (kept from original list where relevant)
   "Solar Water Heater 200L",
   "Solar Water Heater 100L",
   "Solar Water Heater 300L",
-  "Electric Instant Geyser 15L",
-  "Storage Electric Geyser 25L",
-  "Gas Water Heater Instant",
+
+  // Services
   "Installation Service",
   "Maintenance & Repair",
   "System Upgrade",
   "Consultation & Design",
   "Emergency Support",
   "Performance Monitoring",
+
+  // Additional services customers often ask
+  "CCTV Camera Installation",
+  "UPS Battery Replacement",
+  "Chimney Deep Cleaning",
+  "Water Quality/TDS Check",
 ];
 
 export default function ContactForm({ onClose }) {
@@ -79,8 +107,8 @@ export default function ContactForm({ onClose }) {
 
           <p className="text-blue-600 font-semibold mb-4 text-center md:text-left">
             📞 Call us at{" "}
-            <a href="tel:+919876543210" className="underline hover:text-blue-800">
-              +91 98765 43210
+            <a href="tel:+918310280310" className="underline hover:text-blue-800">
+              +91 8310280310
             </a>
           </p>
 

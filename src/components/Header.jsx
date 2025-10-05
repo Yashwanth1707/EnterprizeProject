@@ -39,18 +39,23 @@ export default function Header() {
             <div className="flex justify-between items-center py-2">
               {/* Logo */}
               <div className="flex items-center space-x-4">
-                <a href="#home">
-                  <img
-                    className="w-24 h-24 rounded-full shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] transition-shadow duration-300 hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)]"
-                    src="/images/logo.png"
-                    alt="Mobile Logo"
-                  />
+                <a href="#home" className="shrink-0">
+                  {/* Circular logo container: responsive size, crops inner image */}
+                  <div className="rounded-full overflow-hidden shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)] transition-shadow duration-300
+                                  w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
+                    <img
+                      src="/images/logo.png"
+                      alt="Company Logo"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
                 </a>
-                <div className="flex flex-col">
-                  <h1 className="text-3xl md:text-4xl font-light text-slate-900 tracking-wide leading-tight">
+
+                <div className="flex flex-col min-w-0">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-slate-900 tracking-wide leading-tight">
                     <span className="font-semibold">Bhairava</span> Enterprises
                   </h1>
-                  <p className="text-sm md:text-base text-slate-600 font-light hidden sm:block leading-relaxed mt-1">
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light hidden sm:block leading-relaxed mt-1">
                     Energy and safety with bhairava
                   </p>
                 </div>
@@ -99,7 +104,11 @@ export default function Header() {
             {/* Mobile Sidebar */}
             {isMenuOpen && (
               <div className="md:hidden fixed inset-0 z-50 flex">
-                <div className="flex-1 bg-black/10 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} aria-label="Close menu overlay" />
+                <div
+                  className="flex-1 bg-black/10 backdrop-blur-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close menu overlay"
+                />
                 <div
                   className={`w-72 bg-white shadow-xl transform transition-all duration-500 ease-out ${
                     isMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -108,12 +117,14 @@ export default function Header() {
                   <div className="bg-slate-50 border-b border-slate-100 p-6 flex items-center justify-between">
                     {/* Logo inside mobile menu modal */}
                     <div className="flex items-center space-x-4">
-                      <img
-                        className="w-24 h-24 rounded-full shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] transition-shadow duration-300 hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)]"
-                        src="/images/logo.png"
-                        alt="Mobile Logo"
-                      />
-                      <div>
+                      <div className="rounded-full overflow-hidden shadow-[0_0_10px_4px_rgba(59,130,246,0.6)] hover:shadow-[0_0_14px_6px_rgba(99,179,237,0.8)] transition-shadow duration-300 w-16 h-16">
+                        <img
+                          src="/images/logo.png"
+                          alt="Mobile Logo"
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </div>
+                      <div className="min-w-0">
                         <h2 className="font-light text-2xl text-slate-900">Bhairava EnterPrises</h2>
                         <p className="text-base text-slate-600 font-light mt-1">Energy and safety with bhairava</p>
                       </div>

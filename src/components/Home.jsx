@@ -3,78 +3,71 @@ import { motion } from "framer-motion";
 
 export default function HomeSection() {
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, staggerChildren: 0.2 },
+      transition: { duration: 0.8, staggerChildren: 0.15, delayChildren: 0.05 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+    hidden: { opacity: 0, scale: 0.96 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: "easeOut" } },
   };
 
-  // Balanced focus: Supreme Solar + Chimneys (no geysers)
   const features = [
-    // Supreme Solar focus
-    {
-      icon: "🏷️",
-      title: "Supreme Solar Brand",
-      description:
-        "Glass-lined inner tanks, robust exteriors, and high-absorption collectors for reliable hot water daily.",
-      color: "from-blue-600 to-green-600",
-    },
     {
       icon: "☀️",
-      title: "ETC & FPC Choices",
+      title: "Supreme Solar Heaters",
       description:
-        "Evacuated Tube or Flat Plate collectors engineered for Indian climates and consistent 65–85 °C output.",
+        "ETC and FPC systems with glass‑lined tanks and thick PUF insulation for reliable hot water.",
       color: "from-yellow-400 to-orange-500",
     },
     {
-      icon: "🧊",
-      title: "50 mm PUF Insulation",
-      description:
-        "Thick insulation for extended heat retention so water stays hot longer with minimal losses.",
-      color: "from-green-400 to-green-600",
-    },
-    // Chimneys focus
-    {
       icon: "🏠",
-      title: "High-Suction Chimneys",
+      title: "Supreme Kitchen Chimneys",
       description:
-        "Up to 1200–1600 m³/hr suction with auto-clean for smoke-free, fresh kitchens tailored to Indian cooking.",
+        "High‑suction 1200–1600 m³/hr, auto‑clean options, and quiet BLDC motors for fresh kitchens.",
       color: "from-slate-600 to-gray-900",
     },
     {
-      icon: "🖐️",
-      title: "Smart Controls",
+      icon: "🔌",
+      title: "Luminous UPS/Inverters",
       description:
-        "Filterless/baffle options with gesture/touch control, LED lighting, and quiet, efficient motors.",
-      color: "from-cyan-500 to-teal-600",
+        "Pure sine wave and Li‑ion options for seamless backup and appliance‑safe power.",
+      color: "from-violet-500 to-indigo-600",
+    },
+    {
+      icon: "🎥",
+      title: "CCTV Installation",
+      description:
+        "Neat, secure camera setups with mobile viewing, DVR/NVR, and reliable after‑sales support.",
+      color: "from-blue-600 to-cyan-500",
+    },
+    {
+      icon: "💧",
+      title: "RO Water Purifiers",
+      description:
+        "Kent, Aquaguard, and Purocis RO+UV systems with mineral balance and smart alerts.",
+      color: "from-teal-500 to-emerald-600",
     },
     {
       icon: "🛠️",
-      title: "Neat Install & Care",
+      title: "Expert Install & Care",
       description:
-        "Professional installation, clean routing, and responsive support for long-term efficiency and comfort.",
-      color: "from-purple-500 to-indigo-600",
+        "Site survey, professional installation, and responsive service to keep systems efficient.",
+      color: "from-purple-500 to-pink-600",
     },
   ];
 
   const stats = [
-    { number: "100–500 LPD", label: "Solar Capacities", icon: "📦" },
+    { number: "100–3000 LPD", label: "Solar Capacities", icon: "📦" },
     { number: "50 mm", label: "PUF Insulation", icon: "🧊" },
     { number: "1200–1600", label: "m³/hr Suction", icon: "💨" },
     { number: "24/7", label: "After‑Sales Support", icon: "🔧" },
@@ -87,9 +80,9 @@ export default function HomeSection() {
     >
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
+        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000" />
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-2000" />
       </div>
 
       <motion.div
@@ -98,59 +91,43 @@ export default function HomeSection() {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Brand & Company Line */}
-        <div className="text-center mb-3">
-          <motion.span
-            className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent text-sm md:text-base font-semibold"
-            variants={itemVariants}
-          >
-            Bhairava Enterprises • Solar & Kitchen Solutions
-          </motion.span>
-        </div>
-
-        {/* Dual-focus Tagline */}
+        {/* Brand Emphasis */}
         <div className="text-center mb-2">
           <motion.span
-            className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent text-lg font-semibold"
+            className="text-xs md:text-sm uppercase tracking-widest text-slate-500"
             variants={itemVariants}
           >
-            🌟 Supreme Solar Water Heaters & Modern Kitchen Chimneys
+            Trusted since 2020
           </motion.span>
         </div>
 
-        {/* Headline */}
+        <div className="text-center mb-2">
+          <motion.span
+            className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent text-3xl md:text-4xl font-extrabold"
+            variants={itemVariants}
+          >
+            Bhairava Enterprises
+          </motion.span>
+        </div>
+
+        {/* New Headline + Tagline */}
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-center"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold mt-2 leading-snug text-center text-gray-900"
           variants={itemVariants}
         >
-          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
-            Comfort That Works Every Day
-          </span>
-          <br />
-          <span className="text-gray-800">Solar Hot Water & Clean Kitchens</span>
+          Energy‑Smart Homes, Cleaner Kitchens
         </motion.h1>
 
-        {/* Overview: what and why */}
         <motion.p
-          className="text-gray-700 max-w-4xl mx-auto mb-6 text-base md:text-lg leading-relaxed text-center"
+          className="text-gray-700 max-w-3xl mx-auto mt-3 text-lg md:text-xl leading-relaxed text-center"
           variants={itemVariants}
         >
-          Bhairava Enterprises sells and installs Supreme Solar water heaters and high‑performance
-          kitchen chimneys—solutions chosen to lower energy costs, keep homes fresh, and deliver
-          long‑term comfort with dependable service.
-        </motion.p>
-
-        <motion.p
-          className="text-gray-700 max-w-4xl mx-auto mb-10 text-xl md:text-2xl leading-relaxed text-center"
-          variants={itemVariants}
-        >
-          From glass‑lined, PUF‑insulated solar systems to auto‑clean, high‑suction chimneys, every
-          setup is specified, installed, and supported with care—so daily life stays efficient and easy.
+          Supreme Solar heaters and chimneys, Luminous UPS power, CCTV security, and RO purification — planned, installed, and supported end‑to‑end.
         </motion.p>
 
         {/* Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+          className="flex flex-col sm:flex-row gap-6 justify-center mt-8 mb-14"
           variants={itemVariants}
         >
           <a
@@ -181,15 +158,15 @@ export default function HomeSection() {
 
         {/* Stats */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
           variants={itemVariants}
         >
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
               variants={cardVariants}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
             >
               <div className="text-3xl mb-2">{stat.icon}</div>
               <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">
@@ -202,17 +179,15 @@ export default function HomeSection() {
           ))}
         </motion.div>
 
-        {/* Features Grid */}
+        {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-2xl shadow-lg p-6 cursor-default"
+              className="bg-white rounded-2xl shadow-lg p-6"
               variants={cardVariants}
             >
-              <div
-                className={`bg-gradient-to-r ${feature.color} p-6 text-white rounded-xl mb-4`}
-              >
+              <div className={`bg-gradient-to-r ${feature.color} p-6 text-white rounded-xl mb-4`}>
                 <div className="text-4xl mb-3">{feature.icon}</div>
                 <h3 className="text-xl font-bold">{feature.title}</h3>
               </div>
@@ -225,8 +200,7 @@ export default function HomeSection() {
 
         {/* Brand-focused note */}
         <p className="mt-10 text-sm text-gray-500 text-center">
-          Supreme Solar systems span 100–500 LPD with ETC/FPC collectors and thick PUF insulation;
-          chimney options feature auto‑clean, high‑suction designs for Indian kitchens.
+          Supreme Solar spans 100–3000 LPD with ETC/FPC collectors and 50 mm PUF insulation; chimneys feature auto‑clean and high‑suction designs for Indian kitchens. Luminous UPS protects appliances with stable, sine‑wave power.
         </p>
       </motion.div>
     </section>

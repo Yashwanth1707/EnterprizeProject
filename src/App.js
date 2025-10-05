@@ -12,11 +12,11 @@ function ScrollToTopButton() {
 
   useEffect(() => {
     function onScroll() {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const nearBottom = document.documentElement.scrollHeight - scrollPosition < 100;
-      setVisible(nearBottom);
+      // Show after a small scroll (e.g., > 60px)
+      setVisible(window.scrollY > 60);
     }
-    window.addEventListener("scroll", onScroll);
+    onScroll(); // initialize on mount
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -30,8 +30,12 @@ function ScrollToTopButton() {
     <button
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className="fixed bottom-8 right-8 bg-pink-600 text-white p-4 rounded-full shadow-lg hover:bg-pink-700 transition"
-      style={{ zIndex: 1000 }}
+      className="fixed right-4 sm:right-6 bg-pink-600 text-white p-4 rounded-full shadow-lg hover:bg-pink-700 transition"
+      style={{
+        zIndex: 1000,
+        // Lift above iOS home bar and Android gesture bar
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)",
+      }}
     >
       ▲
     </button>
@@ -50,16 +54,17 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="min-h-dvh flex flex-col"> {/* dynamic viewport-safe root */} 
       <Header
         isContactModalOpen={contactModalOpen}
         onCloseContactModal={closeContactModal}
       />
 
-      <main>
+      <main className="flex-1">
+        {/* Home: animate immediately */}
         <motion.section
           id="home"
-          className="min-h-screen bg-blue-50 p-10"
+          className="min-h-dvh bg-blue-50 p-6 sm:p-10"
           initial="hidden"
           animate="visible"
           variants={sectionVariants}
@@ -67,12 +72,13 @@ function App() {
           <HomeSection />
         </motion.section>
 
+        {/* Products: whileInView with mobile-friendly threshold */}
         <motion.section
           id="products"
-          className="min-h-screen bg-white p-10"
+          className="min-h-dvh bg-white p-6 sm:p-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.08, margin: "0px 0px -10% 0px" }}
           variants={sectionVariants}
         >
           <ProductList
@@ -81,23 +87,25 @@ function App() {
           />
         </motion.section>
 
+        {/* Services */}
         <motion.section
           id="services"
-          className="min-h-screen bg-blue-100 p-10"
+          className="min-h-dvh bg-blue-100 p-6 sm:p-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.08, margin: "0px 0px -10% 0px" }}
           variants={sectionVariants}
         >
           <Services />
         </motion.section>
 
+        {/* About */}
         <motion.section
           id="about"
-          className="min-h-screen bg-blue-50 p-10"
+          className="min-h-dvh bg-blue-50 p-6 sm:p-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.08, margin: "0px 0px -10% 0px" }}
           variants={sectionVariants}
         >
           <AboutUs />
@@ -105,7 +113,6 @@ function App() {
       </main>
 
       <Footer />
-
       <ScrollToTopButton />
     </div>
   );
