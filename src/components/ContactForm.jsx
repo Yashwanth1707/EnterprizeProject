@@ -64,9 +64,9 @@ export default function ContactForm({ onClose }) {
     setLoading(true);
     setStatus(null);
 
-    const serviceID = "service_z3cwy6c";
-    const templateID = "template_zleqksc";
-    const userID = "Y1iR5oC3f-PH9RSb5";
+    const serviceID = "service_nx9wj7f";
+    const templateID = "template_7okqlw5";
+    const userID = "pVIOgGQnThYz2u_cs";
 
     const templateParams = {
       from_name: form.name,
