@@ -12,7 +12,7 @@ export default function AboutUs() {
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
               <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl ring-4 ring-white bg-white">
                 <img
-                  src="/images/owner_pic.png"
+                  src="images/pro_pic.png"
                   alt="Keerthi CM"
                   className="w-full h-full object-cover object-[50%_18%]"
                   loading="lazy"

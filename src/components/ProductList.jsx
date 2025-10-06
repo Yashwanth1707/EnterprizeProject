@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef, memo } from "react";
 import ContactForm from "./ContactForm";
 
-// Helpers (moved outside to avoid re-creation each render)
+// Helpers
 const getCategoryColor = (category) => {
   switch (category) {
     case "solar":
@@ -43,67 +43,68 @@ const getPrimarySpecLabel = (category) => {
   return "Capacity";
 };
 
-// Products (unchanged for brevity)
-const products = [
-  { id: 1, name: "Supreme Solar GL ETC 200 LPD", description: "Glass‑lined ETC tank for high hardness water; hygienic and durable hot water for homes.", price: 24499, originalPrice: 28999, image: "/images/solae11.jpg", category: "solar", efficiency: "ETC | 200 LPD", warranty: "5 Years", features: ["Glass‑lined inner tank", "Hard water tolerance", "Fast heat absorption", "Weather resistant", "Low maintenance"] },
-  { id: 2, name: "Supreme Solar FPC 250 LPD", description: "Flat Plate Collector system ideal for apartments and continuous hot water needs.", price: 32999, originalPrice: 36999, image: "/images/200-to-500-LPD-fpc-system-SAME-PICTURE-3.jpg", category: "solar", efficiency: "FPC | 250 LPD", warranty: "5 Years", features: ["Flat Plate Collector", "Stable performance in cold", "Durable absorber plate", "Insulated tank", "Apartment friendly"] },
-  { id: 3, name: "Supreme Solar ETC 300 LPD", description: "High capacity ETC system for large families or light commercial usage.", price: 37999, originalPrice: 41999, image: "/images/ssolar33.jpeg", category: "solar", efficiency: "ETC | 300 LPD", warranty: "5 Years", features: ["High efficiency tubes", "Quick heat gain", "Rugged build", "Scalable capacity", "Energy saving"] },
+// Data
+export const products = [
+  { id: 1, name: "Heavy Plus 110 LPD", category: "solar", price: 16000, warranty: "5 Years", efficiency: "ETC | 110 LPD", image: "/images/hpsolar1.jpg", description: "Compact ETC system for small families with quick morning heat-up and low upkeep.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 2, name: "Heavy Plus 165 LPD", category: "solar", price: 21000, warranty: "5 Years", efficiency: "ETC | 165 LPD", image: "/images/hp165.png", description: "Balanced 165 LPD capacity ideal for 3–4 members with robust insulation and tubing.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 3, name: "Heavy Plus 200 LPD", category: "solar", price: 24500, warranty: "5 Years", efficiency: "ETC | 200 LPD", image: "/images/hp200solar.webp", description: "Popular family-size ETC with reliable hot water across most seasons at low cost.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 4, name: "Heavy Plus 220 LPD", category: "solar", price: 25500, warranty: "5 Years", efficiency: "ETC | 220 LPD", image: "/images/hp220.webp", description: "Extra headroom for larger households, keeping peak-hour demand comfortable.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 5, name: "Heavy Plus 270 LPD", category: "solar", price: 31000, warranty: "5 Years", efficiency: "ETC | 270 LPD", image: "/images/hp270.jpeg", description: "Higher capacity system for duplexes or two bathrooms running in parallel.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 6, name: "Heavy Plus 300 LPD", category: "solar", price: 38000, warranty: "5 Years", efficiency: "ETC | 300 LPD", image: "/images/hp300.jpeg", description: "300 LPD ETC with efficient heat retention for families with frequent usage.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 7, name: "Heavy Plus 500 LPD", category: "solar", price: 53000, warranty: "5 Years", efficiency: "ETC | 500 LPD", image: "/images/hp500.jpeg", description: "Large-capacity ETC solution for villas and small commercial needs.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
 
-  // Heavy Plus ETC
-  { id: 24, name: "Heavy Plus 110 LPD", description: "Heavy Plus model ETC 110 LPD.", price: 16000, image: "/images/solar-hp-110.jpg", category: "solar", efficiency: "ETC | 110 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 25, name: "Heavy Plus 165 LPD", description: "Heavy Plus model ETC 165 LPD.", price: 21000, image: "/images/solar-hp-165.jpg", category: "solar", efficiency: "ETC | 165 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 26, name: "Heavy Plus 200 LPD", description: "Heavy Plus model ETC 200 LPD.", price: 24500, image: "/images/solar-hp-200.jpg", category: "solar", efficiency: "ETC | 200 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 27, name: "Heavy Plus 220 LPD", description: "Heavy Plus model ETC 220 LPD.", price: 25500, image: "/images/solar-hp-220.jpg", category: "solar", efficiency: "ETC | 220 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 28, name: "Heavy Plus 270 LPD", description: "Heavy Plus model ETC 270 LPD.", price: 31000, image: "/images/solar-hp-270.jpg", category: "solar", efficiency: "ETC | 270 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 29, name: "Heavy Plus 300 LPD", description: "Heavy Plus model ETC 300 LPD.", price: 38000, image: "/images/solar-hp-300.jpg", category: "solar", efficiency: "ETC | 300 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
-  { id: 30, name: "Heavy Plus 500 LPD", description: "Heavy Plus model ETC 500 LPD.", price: 53000, image: "/images/solar-hp-500.jpg", category: "solar", efficiency: "ETC | 500 LPD", warranty: "5 Years", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  // Solar: FPC Non‑Pressurized
+  { id: 8, name: "FPC Non-Press 220 LPD", category: "solar", price: 56000, warranty: "5 Years", efficiency: "FPC | 220 LPD", image: "/images/fpc-220.jpg", description: "Flat Plate Collector with durable absorber and stable performance in varied climates.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  { id: 9, name: "FPC Non-Press 275 LPD", category: "solar", price: 61000, warranty: "5 Years", efficiency: "FPC | 275 LPD", image: "/images/fpc-275.jpg", description: "Higher non-pressurized FPC capacity with consistent delivery and low losses.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  { id: 10, name: "FPC Non-Press 300 LPD", category: "solar", price: 73000, warranty: "5 Years", efficiency: "FPC | 300 LPD", image: "/images/fpc-300.jpg", description: "300 LPD FPC suited for frequent draw-offs and steady temperature output.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
 
-  // FPC Non-Pressurized
-  { id: 31, name: "FPC Non-Press 220 LPD", description: "Flat Plate Collector non-pressurized 220 LPD.", price: 56000, image: "/images/solar-fpc-np-220.jpg", category: "solar", efficiency: "FPC | 220 LPD", warranty: "5 Years", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
-  { id: 32, name: "FPC Non-Press 275 LPD", description: "Flat Plate Collector non-pressurized 275 LPD.", price: 61000, image: "/images/solar-fpc-np-275.jpg", category: "solar", efficiency: "FPC | 275 LPD", warranty: "5 Years", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
-  { id: 33, name: "FPC Non-Press 300 LPD", description: "Flat Plate Collector non-pressurized 300 LPD.", price: 73000, image: "/images/solar-fpc-np-300.jpg", category: "solar", efficiency: "FPC | 300 LPD", warranty: "5 Years", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  // Solar: FPC Pressurized
+  { id: 11, name: "FPC Pressurized 220 LPD", category: "solar", price: 62000, warranty: "5 Years", efficiency: "FPC | 220 LPD | Pressurized", image: "/images/fpc-p-220.jpeg", description: "Pressurized FPC system for high line pressure homes and premium bath fittings.", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
+  { id: 12, name: "FPC Pressurized 275 LPD", category: "solar", price: 71000, warranty: "5 Years", efficiency: "FPC | 275 LPD | Pressurized", image: "/images/275-FPC.jpg", description: "Balanced pressurized capacity supporting multi-bath usage without drop in flow.", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
+  { id: 13, name: "FPC Pressurized 300 LPD", category: "solar", price: 82000, warranty: "5 Years", efficiency: "FPC | 300 LPD | Pressurized", image: "/images/fpc-p-300.jpg", description: "Top-tier pressurized FPC for rain showers and long pipelines with steady output.", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
 
-  // FPC Pressurized
-  { id: 34, name: "FPC Pressurized 220 LPD", description: "FPC pressurized 220 LPD system.", price: 62000, image: "/images/solar-fpc-p-220.jpg", category: "solar", efficiency: "FPC | 220 LPD | Pressurized", warranty: "5 Years", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
-  { id: 35, name: "FPC Pressurized 275 LPD", description: "FPC pressurized 275 LPD system.", price: 71000, image: "/images/solar-fpc-p-275.jpg", category: "solar", efficiency: "FPC | 275 LPD | Pressurized", warranty: "5 Years", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
-  { id: 36, name: "FPC Pressurized 300 LPD", description: "FPC pressurized 300 LPD system.", price: 82000, image: "/images/solar-fpc-p-300.jpg", category: "solar", efficiency: "FPC | 300 LPD | Pressurized", warranty: "5 Years", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
-
-  // Commercial solar
-  { id: 13, name: "Commercial Solar Water Heater 3000 LPD", description: "Large‑scale solar hot water system for hotels, hostels, hospitals and commercial kitchens.", price: 335000, image: "/images/comm1.jpg", category: "solar-commercial", efficiency: "ETC/FPC | 3000 LPD", warranty: "5 Years", features: ["High volume 3000 LPD capacity", "Energy‑saving bulk hot water", "Rooftop installation", "Low maintenance design", "Durable industrial build"] },
+  // Solar: Commercial
+  { id: 14, name: "Commercial Solar Water Heater 3000 LPD", category: "solar-commercial", price: 335000, warranty: "5 Years", efficiency: "ETC/FPC | 3000 LPD", image: "/images/comm1.jpg", description: "High-volume system for hotels, hostels, hospitals and kitchens with engineered piping.", features: ["3000 LPD capacity", "Bulk hot water", "Rooftop installation", "Low maintenance", "Industrial build"] },
 
   // Heat Pump
-  { id: 14, name: "Heat Pump Water Heater 200L", description: "High‑efficiency air‑source heat pump with up to 70% energy savings over electric geysers.", price: 68999, originalPrice: 74999, image: "/images/heatpump.jpg", category: "solar", efficiency: "COP up to 3.4 | 200 L", warranty: "2 Years", features: ["All‑weather performance", "Fast heating with low power", "Quiet operation", "Smart controls available", "Eco‑friendly refrigerant"] },
+  { id: 15, name: "Heat Pump Water Heater 200L", category: "solar", price: 68999, originalPrice: 74999, warranty: "2 Years", efficiency: "COP up to 3.4 | 200 L", image: "/images/heatpump.jpg", description: "All-weather air-source heat pump delivering up to 70% energy savings vs electric geysers.", features: ["Fast heating", "Low power usage", "Quiet operation", "Smart controls", "Eco-friendly refrigerant"] },
 
   // Purifiers
-  { id: 23, name: "Aqua Grand RO", description: "Budget RO for daily drinking needs.", price: 7000, image: "/images/ro-aquagrand.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["RO stages", "Carbon polishing", "Serviceable", "Compact"] },
-  { id: 20, name: "Aqua Pearl RO", description: "Value RO with dependable purification.", price: 8500, image: "/images/ro-aquapearl.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["Core RO filtration", "Sediment+carbon", "Wall-mount ready", "Budget friendly"] },
-  { id: 22, name: "Copper Pearl RO", description: "RO with copper infusion feature.", price: 9500, image: "/images/ro-copperpearl.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["Copper enrichment", "Taste enhancer", "Filter alerts", "Sleek form"] },
-  { id: 17, name: "Purosis RO", description: "Trusted RO brand with essential purification stages.", price: 11500, image: "/images/ro-purosis.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["Essential RO stages", "Reliable build", "Serviceable filters", "Compact body"] },
-  { id: 19, name: "Innovica RO", description: "Efficient RO for daily use with balanced features.", price: 12000, image: "/images/ro-innovica.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["RO+Carbon combo", "Low TDS compatible", "Easy maintenance", "Compact design"] },
-  { id: 18, name: "Finpure RO", description: "Premium RO with refined filtration and finish.", price: 13000, image: "/images/ro-finpure.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["Enhanced taste", "Durable components", "Alert indicators", "Easy service"] },
-  { id: 8, name: "Aquaguard RO+UV+UF 7L", description: "Trusted RO + UV purification with taste enhancer and compact wall‑mount design.", price: 15499, originalPrice: 17499, image: "/images/aquaguardro.webp", category: "purifier", efficiency: "7 L | 15 LPH", warranty: "1 Year", features: ["RO+UV+UF stages", "Taste enhancer", "Built‑in pre‑filter", "Smart alerts", "Urban water ready"] },
-  { id: 7, name: "KENT Grand Plus RO+UV+UF+TDS 8L", description: "Multiple purification with TDS control, UV in‑tank, and mineral retention for great taste.", price: 16999, originalPrice: 19999, image: "/images/kentro.jpg", category: "purifier", efficiency: "8 L | 20 LPH", warranty: "1 Year", features: ["RO+UV+UF+TDS Control", "Mineral retention", "UV LED in tank", "Zero water wastage design", "Wall‑mount body"] },
-  { id: 21, name: "Dolphin RO", description: "Sturdy RO system suitable for households.", price: 75000, image: "/images/ro-dolphin.jpg", category: "purifier", efficiency: "RO | Household", warranty: "1 Year", features: ["Robust housing", "RO stages", "Service support", "Reliable output"] },
+  { id: 16, name: "Aqua Grand RO", category: "purifier", price: 7000, warranty: "1 Year", efficiency: "RO | Household", image: "/images/AquagrandRO.jpg", description: "Budget RO for essential daily drinking needs with serviceable filters.", features: ["RO stages", "Carbon polishing", "Serviceable", "Compact"] },
+  { id: 17, name: "Aqua Pearl RO", category: "purifier", price: 8500, warranty: "1 Year", efficiency: "RO | Household", image: "/images/Aqua-Pearl-RO.jpg", description: "Value RO with dependable purification and easy wall-mount design.", features: ["Core RO filtration", "Sediment+carbon", "Wall-mount ready", "Budget friendly"] },
+  { id: 18, name: "Copper Pearl RO", category: "purifier", price: 9500, warranty: "1 Year", efficiency: "RO | Household", image: "/images/copperpearlro.jpg", description: "RO with copper enrichment for taste and hygiene focused households.", features: ["Copper enrichment", "Taste enhancer", "Filter alerts", "Sleek form"] },
+  { id: 19, name: "Purosis RO", category: "purifier", price: 11500, warranty: "1 Year", efficiency: "RO | Household", image: "/images/purosisro.jpg", description: "Trusted RO brand with essential multi-stage filtration and reliable build.", features: ["Essential RO stages", "Reliable build", "Serviceable filters", "Compact body"] },
+  { id: 20, name: "Innovica RO", category: "purifier", price: 12000, warranty: "1 Year", efficiency: "RO | Household", image: "/images/aqua innovacia.jpg", description: "Balanced RO for daily use with low TDS compatibility and easy maintenance.", features: ["RO+Carbon combo", "Low TDS compatible", "Easy maintenance", "Compact design"] },
+  { id: 21, name: "Finpure RO", category: "purifier", price: 13000, warranty: "1 Year", efficiency: "RO | Household", image: "/images/finpure.png", description: "Premium RO with refined filtration, indicators and durable components.", features: ["Enhanced taste", "Durable components", "Alert indicators", "Easy service"] },
+  { id: 22, name: "Aquaguard RO+UV+UF 7L", category: "purifier", price: 15499, originalPrice: 17499, warranty: "1 Year", efficiency: "7 L | 15 LPH", image: "/images/aquaguardro.webp", description: "Trusted multi-stage RO+UV+UF with taste enhancer for urban water conditions.", features: ["RO+UV+UF", "Taste enhancer", "Built-in pre-filter", "Smart alerts"] },
+  { id: 23, name: "KENT Grand Plus RO+UV+UF+TDS 8L", category: "purifier", price: 16999, originalPrice: 19999, warranty: "1 Year", efficiency: "8 L | 20 LPH", image: "/images/kentro.jpg", description: "Advanced purification with TDS control, mineral retention and UV in-tank.", features: ["TDS Control", "Mineral retention", "UV in tank", "Low wastage design"] },
+  { id: 24, name: "Dolphin RO", category: "purifier", price: 7500, warranty: "1 Year", efficiency: "RO | Household", image: "/images/dolphin.jpg", description: "Sturdy RO with robust housing and reliable output for small families.", features: ["Robust housing", "RO stages", "Service support", "Reliable output"] },
 
   // Chimneys
-  { id: 4, name: "Supreme ECO H4 60 cm Auto‑Clean", description: "Wall‑mount auto‑clean chimney with touch panel, strong suction and LED lighting.", price: 12999, originalPrice: 15999, image: "/images/chimney1.png", category: "chimney", efficiency: "1200 m³/hr", warranty: "1 Year", features: ["Auto‑clean function", "Touch controls", "Baffle filter", "LED lamps", "Low noise motor"] },
-  { id: 5, name: "Supreme FIGO XL 90 cm Touch", description: "90 cm wide coverage chimney for heavy cooking with strong suction and easy maintenance.", price: 17999, originalPrice: 20999, image: "/images/chimney2.jpg", category: "chimney", efficiency: "1400 m³/hr", warranty: "1 Year", features: ["Wide 90 cm canopy", "High suction power", "Touch panel", "Oil collector", "LED illumination"] },
-  { id: 6, name: "Supreme CROWN X 60 cm", description: "Compact 60 cm chimney with efficient filtration and simple touch operation.", price: 14999, originalPrice: 17999, image: "/images/chimney3.jpg", category: "chimney", efficiency: "1100 m³/hr", warranty: "1 Year", features: ["Space‑saving size", "Touch controls", "Baffle/Mesh filter", "Copper motor", "Stainless housing"] },
+  { id: 25, name: "Supreme ECO H4 60 cm Auto‑Clean", category: "chimney", price: 12999, originalPrice: 15999, warranty: "1 Year", efficiency: "1200 m³/hr", image: "/images/chimney1.png", description: "Auto-clean wall-mount chimney with touch controls and bright LED lighting.", features: ["Auto-clean", "Touch controls", "Baffle filter", "LED lamps", "Low noise"] },
+  { id: 26, name: "Supreme FIGO XL 90 cm Touch", category: "chimney", price: 17999, originalPrice: 20999, warranty: "1 Year", efficiency: "1400 m³/hr", image: "/images/chimney2.jpg", description: "Wide 90 cm canopy for heavy cooking with high suction and simple upkeep.", features: ["90 cm canopy", "High suction", "Touch panel", "Oil collector", "LEDs"] },
+  { id: 27, name: "Supreme CROWN X 60 cm", category: "chimney", price: 14999, originalPrice: 17999, warranty: "1 Year", efficiency: "1100 m³/hr", image: "/images/chimney3.jpg", description: "Compact 60 cm chimney with efficient filtration and clean touch interface.", features: ["Space-saving", "Touch controls", "Baffle/Mesh filter", "Copper motor"] },
 
   // UPS
-  { id: 10, name: "Luminous Zelio+ 1100 Pure Sine Wave", description: "Smart Home UPS with 32‑bit DSP, fast changeover and LCD showing backup/charge time.", price: 10500, originalPrice: 11990, image: "/images/lum1.jpg", category: "ups", efficiency: "900 VA | 756 W", warranty: "24 Months", features: ["Pure sine wave", "32‑bit DSP & LCD", "Eco/UPS modes", "12V single battery", "Overload protection"] },
-  { id: 11, name: "Luminous Eco Watt Neo 1050", description: "Reliable home UPS with intelligent charging and wide input voltage handling.", price: 8550, originalPrice: 9990, image: "/images/lum2.jpg", category: "ups", efficiency: "900 VA | 756 W", warranty: "24 Months", features: ["Intelligent charging", "Square/Intelligent wave", "12V single battery", "MCB protection", "Eco/UPS modes"] },
-  { id: 12, name: "Luminous Li‑ON 1250 (In‑built Lithium)", description: "Premium sine wave inverter with in‑built Li‑ion battery for fast charging and compact size.", price: 69990, originalPrice: 74990, image: "/images/lum3.jpg", category: "ups", efficiency: "1250 VA | Li‑ion", warranty: "60 Months", features: ["In‑built Lithium battery", "Fast charging", "Pure sine wave", "Smart LCD", "Silent operation"] },
+  { id: 28, name: "Luminous Zelio+ 1100 Pure Sine Wave", category: "ups", price: 10500, originalPrice: 11990, warranty: "24 Months", efficiency: "900 VA | 756 W", image: "/images/lum1.jpg", description: "Smart sine wave UPS with LCD, fast changeover and dependable backup timing.", features: ["Pure sine wave", "32‑bit DSP & LCD", "Eco/UPS modes", "MCB protection"] },
+  { id: 29, name: "Luminous Eco Watt Neo 1050", category: "ups", price: 8550, originalPrice: 9990, warranty: "24 Months", efficiency: "900 VA | 756 W", image: "/images/lum2.jpg", description: "Reliable home UPS with intelligent charging and wide input handling.", features: ["Intelligent charging", "Square/Intelligent wave", "MCB protection", "Eco/UPS modes"] },
+  { id: 30, name: "Luminous Li‑ON 1250 (In‑built Lithium)", category: "ups", price: 69990, originalPrice: 74990, warranty: "60 Months", efficiency: "1250 VA | Li‑ion", image: "/images/lum3.jpg", description: "Premium inverter with in-built Li-ion battery for compact, fast-charging backup.", features: ["In‑built Lithium", "Fast charging", "Pure sine wave", "Smart LCD", "Silent"] },
 
-  // Commercial
-  { id: 16, name: "Commercial Water Softener", description: "Industrial‑grade softener reducing hardness to protect plumbing, boilers, and equipment.", price: 165000, image: "/images/commercial-softener.jpg", category: "solar-commercial", efficiency: "Softener | 2000 LPH", warranty: "1 Year", features: ["Ion‑exchange resin", "Auto/Manual regen", "High‑flow valves", "FRP/SS vessel", "Low maintenance"] },
-  { id: 15, name: "Commercial RO Plant", description: "High‑capacity RO for hotels, industries, and institutions with robust pre‑treatment and TDS reduction.", price: 245000, image: "/images/commercial-ro.jpg", category: "solar-commercial", efficiency: "RO | LPH Variants", warranty: "1 Year", features: ["Multi‑stage filtration", "Low TDS output", "SS/FRP skids", "Inline monitoring", "Serviceable design"], lphOptions: ["25 LPH", "50 LPH", "100 LPH", "200 LPH", "500 LPH", "1000 LPH", "2000 LPH", "5000 LPH"] },
+  // UPS: Integrated inverter + battery
+  { id: 33, name: "Li‑ion Inverter + Battery 1.1 kVA", category: "ups", price: 38999, originalPrice: 44999, warranty: "60 Months", efficiency: "1100 VA | 880 W", image: "/images/inverter.jpg", description: "Compact pure sine wave inverter with in‑built 1280 Wh Li‑ion battery for zero‑maintenance backup, fast charging, and clean, silent operation.", features: ["In‑built Li‑ion (≈1280 Wh)", "Pure sine wave output", "Fast charge, low input ready", "LCD with backup/charge time", "Wall‑mount compact design", "Zero maintenance"] },
+
+  // Commercial water solutions
+  { id: 31, name: "Commercial Water Softener", category: "solar-commercial", price: 165000, warranty: "1 Year", efficiency: "Softener | 2000 LPH", image: "/images/softner.jpg", description: "Industrial-grade softener reducing hardness to protect plumbing and boilers.", features: ["Ion-exchange resin", "Auto/Manual regen", "High-flow valves", "FRP/SS vessel"] },
+  { id: 32, name: "Commercial RO Plant", category: "solar-commercial", price: 245000, warranty: "1 Year", efficiency: "RO | LPH Variants", image: "/images/commercial-ro-plant-500x500.webp", description: "High-capacity RO with robust pre-treatment and TDS reduction for institutions.", features: ["Multi-stage filtration", "Low TDS output", "SS/FRP skids", "Inline monitoring"], lphOptions: ["25 LPH", "50 LPH", "100 LPH", "200 LPH", "500 LPH", "1000 LPH", "2000 LPH", "5000 LPH"] },
 ];
 
-// Memoized item cards
+// Helper
+const isCommercial = (p) => p.category === "solar-commercial";
+
+// ProductCard
 const ProductCard = memo(function ProductCard({ product, onSelect }) {
   const badge = getCategoryBadge(product.category);
-  const showSavings = product.originalPrice && product.category !== "solar-commercial";
+  const showSavings = product.originalPrice && !isCommercial(product);
   return (
     <div
       className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer hover:-translate-y-1.5"
@@ -159,16 +160,22 @@ const ProductCard = memo(function ProductCard({ product, onSelect }) {
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <span className="text-xl sm:text-2xl font-bold text-gray-900">
-              ₹{product.price.toLocaleString()}
-            </span>
-            {product.originalPrice && product.category !== "solar-commercial" && (
-              <span className="text-sm text-gray-500 line-through ml-2">
-                ₹{product.originalPrice.toLocaleString()}
+          {!isCommercial(product) ? (
+            <div>
+              <span className="text-xl sm:text-2xl font-bold text-gray-900">
+                ₹{product.price.toLocaleString()}
               </span>
-            )}
-          </div>
+              {product.originalPrice && (
+                <span className="text-sm text-gray-500 line-through ml-2">
+                  ₹{product.originalPrice.toLocaleString()}
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className="text-sm text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-md">
+              Contact for pricing
+            </div>
+          )}
         </div>
 
         <button
@@ -183,6 +190,7 @@ const ProductCard = memo(function ProductCard({ product, onSelect }) {
   );
 });
 
+// CommercialCard
 const CommercialCard = memo(function CommercialCard({ product, onSelect, onQuote }) {
   const badge = getCategoryBadge(product.category);
   const hasOptions = Array.isArray(product.lphOptions) && product.lphOptions.length > 0;
@@ -237,12 +245,7 @@ const CommercialCard = memo(function CommercialCard({ product, onSelect, onQuote
           </div>
         )}
 
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xl sm:text-2xl font-bold text-gray-900">
-            ₹{product.price.toLocaleString()}
-          </span>
-        </div>
-
+        {/* Price intentionally omitted for commercial cards */}
         <div className="flex gap-3">
           <button
             onClick={() => onSelect(product)}
@@ -269,7 +272,6 @@ export default function ProductList() {
   const mountedOnce = useRef(false);
   useEffect(() => {
     if (mountedOnce.current) {
-      // If this logs in production, something outside is mounting twice (two roots, hydration + render, or nested providers duplicating subtree)
       // eslint-disable-next-line no-console
       console.warn("ProductList mounted more than once. Check app root mounting and SSR hydration paths.");
     } else {
@@ -287,10 +289,7 @@ export default function ProductList() {
   const commercialOnly = useMemo(() => products.filter((p) => p.category === "solar-commercial"), []);
 
   const filteredProducts = useMemo(() => {
-    const base =
-      selectedCategory === "all"
-        ? allNonCommercial
-        : allNonCommercial.filter((p) => p.category === selectedCategory);
+    const base = selectedCategory === "all" ? allNonCommercial : allNonCommercial.filter((p) => p.category === selectedCategory);
     return expanded ? base : base.slice(0, 9);
   }, [selectedCategory, expanded, allNonCommercial]);
 
@@ -351,7 +350,7 @@ export default function ProductList() {
           </div>
         </div>
 
-        {/* Grid (residential and retail items) */}
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} onSelect={setSelectedProduct} />
@@ -372,7 +371,7 @@ export default function ProductList() {
           </button>
         </div>
 
-        {/* Commercial Section (read-only variant chips; no inputs) */}
+        {/* Commercial Section */}
         {commercialOnly.length > 0 && (
           <section className="mt-14 sm:mt-16">
             <div className="text-center mb-6 sm:mb-8">
@@ -449,7 +448,7 @@ export default function ProductList() {
           </div>
         </section>
 
-        {/* Modal (read-only for variants) */}
+        {/* Modal */}
         {selectedProduct && (
           <div
             className="fixed inset-0 bg-black/60 flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 backdrop-blur-sm"
@@ -509,11 +508,18 @@ export default function ProductList() {
                 {/* Price + Actions */}
                 <div className="border-t pt-5 sm:pt-6">
                   <div className="flex items-center justify-between mb-5 sm:mb-6">
-                    <div>
-                      <span className="text-2xl sm:text-3xl font-bold text-gray-900">
-                        ₹{selectedProduct.price.toLocaleString()}
-                      </span>
-                    </div>
+                    {selectedProduct.category !== "solar-commercial" ? (
+                      <div>
+                        <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+                          ₹{selectedProduct.price.toLocaleString()}
+                        </span>
+                        {selectedProduct.originalPrice && (
+                          <span className="text-sm text-gray-500 line-through ml-2">
+                            ₹{selectedProduct.originalPrice.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+                    ) : null}
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
