@@ -4,15 +4,15 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-pink-600 via-purple-700 to-indigo-800 text-white py-6 mt-10 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-center">
-        
+
         {/* Copyright */}
         <p className="text-sm text-white/90 md:text-left text-center">
           &copy; 2025 Bhairava Enterprises. All rights reserved.
         </p>
-        
+
         {/* Links and Social */}
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 mt-4 md:mt-0">
-          
+
           {/* Navigation Links */}
           <nav className="flex flex-wrap justify-center md:justify-start gap-6">
             <a
@@ -29,7 +29,7 @@ export default function Footer() {
             </a>
             {/* Removed Contact Us per request */}
           </nav>
-          
+
           {/* Social Media Icons */}
           <div className="flex space-x-6">
             {/* Facebook */}
@@ -44,7 +44,7 @@ export default function Footer() {
 
             {/* WhatsApp replaces Twitter */}
             <a
-              href="https://wa.me/918310280310"
+              href="https://wa.me/918310280310?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20products%20at%20Bharava%20Enterprises.%20Could%20you%20please%20provide%20more%20information%3F"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"

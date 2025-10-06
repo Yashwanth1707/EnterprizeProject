@@ -49,6 +49,7 @@ export default function ContactForm({ onClose }) {
     name: "",
     phone: "",
     city: "",
+    email: "",
     inquiry: "",
     message: "",
   });
@@ -72,6 +73,7 @@ export default function ContactForm({ onClose }) {
       from_name: form.name,
       phone: form.phone,
       city: form.city,
+      email: form.email,
       inquiry_topic: form.inquiry,
       message: form.message,
     };
@@ -79,7 +81,7 @@ export default function ContactForm({ onClose }) {
     try {
       await emailjs.send(serviceID, templateID, templateParams, userID);
       setStatus({ success: true, message: "Thank you! We will get back to you soon." });
-      setForm({ name: "", phone: "", city: "", inquiry: "", message: "" });
+      setForm({ name: "", phone: "", city: "", email: "", inquiry: "", message: "" });
     } catch (error) {
       setStatus({ success: false, message: "Oops! Something went wrong. Please try again later." });
       console.error("EmailJS error:", error);
@@ -153,6 +155,16 @@ export default function ContactForm({ onClose }) {
             disabled={loading}
             required
             placeholder="City"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-pink-400 focus:border-pink-500 transition duration-150"
+          />
+          <input
+            name="email"
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            disabled={loading}
+            placeholder="Email"
             className="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-pink-400 focus:border-pink-500 transition duration-150"
           />
 
