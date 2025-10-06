@@ -43,7 +43,7 @@ const getPrimarySpecLabel = (category) => {
   return "Capacity";
 };
 
-// Products
+// Products (unchanged for brevity)
 const products = [
   { id: 1, name: "Supreme Solar GL ETC 200 LPD", description: "Glass‑lined ETC tank for high hardness water; hygienic and durable hot water for homes.", price: 24499, originalPrice: 28999, image: "/images/solae11.jpg", category: "solar", efficiency: "ETC | 200 LPD", warranty: "5 Years", features: ["Glass‑lined inner tank", "Hard water tolerance", "Fast heat absorption", "Weather resistant", "Low maintenance"] },
   { id: 2, name: "Supreme Solar FPC 250 LPD", description: "Flat Plate Collector system ideal for apartments and continuous hot water needs.", price: 32999, originalPrice: 36999, image: "/images/200-to-500-LPD-fpc-system-SAME-PICTURE-3.jpg", category: "solar", efficiency: "FPC | 250 LPD", warranty: "5 Years", features: ["Flat Plate Collector", "Stable performance in cold", "Durable absorber plate", "Insulated tank", "Apartment friendly"] },
@@ -126,9 +126,7 @@ const ProductCard = memo(function ProductCard({ product, onSelect }) {
           loading="lazy"
           decoding="async"
         />
-        <div
-          className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${badge.bg}`}
-        >
+        <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${badge.bg}`}>
           {badge.icon} {badge.label}
         </div>
         {showSavings && (
@@ -199,9 +197,7 @@ const CommercialCard = memo(function CommercialCard({ product, onSelect, onQuote
           loading="lazy"
           decoding="async"
         />
-        <div
-          className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${badge.bg}`}
-        >
+        <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${badge.bg}`}>
           {badge.icon} {badge.label}
         </div>
         <div
@@ -269,20 +265,26 @@ const CommercialCard = memo(function CommercialCard({ product, onSelect, onQuote
 });
 
 export default function ProductList() {
+  // Detect unexpected double-mounts (for diagnostics; safe in prod)
+  const mountedOnce = useRef(false);
+  useEffect(() => {
+    if (mountedOnce.current) {
+      // If this logs in production, something outside is mounting twice (two roots, hydration + render, or nested providers duplicating subtree)
+      // eslint-disable-next-line no-console
+      console.warn("ProductList mounted more than once. Check app root mounting and SSR hydration paths.");
+    } else {
+      mountedOnce.current = true;
+    }
+  }, []);
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
   // Derived lists
-  const allNonCommercial = useMemo(
-    () => products.filter((p) => p.category !== "solar-commercial"),
-    []
-  );
-  const commercialOnly = useMemo(
-    () => products.filter((p) => p.category === "solar-commercial"),
-    []
-  );
+  const allNonCommercial = useMemo(() => products.filter((p) => p.category !== "solar-commercial"), []);
+  const commercialOnly = useMemo(() => products.filter((p) => p.category === "solar-commercial"), []);
 
   const filteredProducts = useMemo(() => {
     const base =
@@ -293,23 +295,14 @@ export default function ProductList() {
   }, [selectedCategory, expanded, allNonCommercial]);
 
   // Prevent background scroll when any modal is open
-  // Guard to avoid dev double-invoke reapplying logic in React 18 StrictMode development
-  const scrollLockRan = useRef(false);
   useEffect(() => {
-    if (scrollLockRan.current) return; // blocks the extra dev invocation
-    scrollLockRan.current = true;
-
     const root = document.documentElement;
     const prev = root.style.overflow;
-    if (selectedProduct || contactModalOpen) {
-      root.style.overflow = "hidden";
-    } else {
-      root.style.overflow = "";
-    }
+    root.style.overflow = selectedProduct || contactModalOpen ? "hidden" : "";
     return () => {
       root.style.overflow = prev;
     };
-  }, [selectedProduct, contactModalOpen]); // preserved deps; guarded for dev
+  }, [selectedProduct, contactModalOpen]);
 
   const onToggleExpandedKey = (e) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -482,9 +475,7 @@ export default function ProductList() {
                   decoding="async"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(selectedProduct.category)} opacity-0`} />
-                <div
-                  className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${getCategoryBadge(selectedProduct.category).bg}`}
-                >
+                <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${getCategoryBadge(selectedProduct.category).bg}`}>
                   {getCategoryBadge(selectedProduct.category).icon} {getCategoryBadge(selectedProduct.category).label}
                 </div>
               </div>
