@@ -45,7 +45,7 @@ const getPrimarySpecLabel = (category) => {
 
 // Data
 export const products = [
-  { id: 1, name: "Heavy Plus 110 LPD", category: "solar", price: 16000, warranty: "5 Years", efficiency: "ETC | 110 LPD", image: "/images/hpsolar1.jpg", description: "Compact ETC system for small families with quick morning heat-up and low upkeep.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
+  { id: 1, name: "Heavy Plus 110 LPD", category: "solar", price: 16000, warranty: "5 Years", efficiency: "ETC | 110 LPD", image: "/images/hp110.jpeg", description: "Compact ETC system for small families with quick morning heat-up and low upkeep.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
   { id: 2, name: "Heavy Plus 165 LPD", category: "solar", price: 21000, warranty: "5 Years", efficiency: "ETC | 165 LPD", image: "/images/hp165.png", description: "Balanced 165 LPD capacity ideal for 3–4 members with robust insulation and tubing.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
   { id: 3, name: "Heavy Plus 200 LPD", category: "solar", price: 24500, warranty: "5 Years", efficiency: "ETC | 200 LPD", image: "/images/hp200solar.webp", description: "Popular family-size ETC with reliable hot water across most seasons at low cost.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
   { id: 4, name: "Heavy Plus 220 LPD", category: "solar", price: 25500, warranty: "5 Years", efficiency: "ETC | 220 LPD", image: "/images/hp220.webp", description: "Extra headroom for larger households, keeping peak-hour demand comfortable.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
@@ -54,9 +54,9 @@ export const products = [
   { id: 7, name: "Heavy Plus 500 LPD", category: "solar", price: 53000, warranty: "5 Years", efficiency: "ETC | 500 LPD", image: "/images/hp500.jpeg", description: "Large-capacity ETC solution for villas and small commercial needs.", features: ["Heavy Plus build", "Fast heating", "Weather resistant", "Low maintenance"] },
 
   // Solar: FPC Non‑Pressurized
-  { id: 8, name: "FPC Non-Press 220 LPD", category: "solar", price: 56000, warranty: "5 Years", efficiency: "FPC | 220 LPD", image: "/images/fpc-220.jpg", description: "Flat Plate Collector with durable absorber and stable performance in varied climates.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
-  { id: 9, name: "FPC Non-Press 275 LPD", category: "solar", price: 61000, warranty: "5 Years", efficiency: "FPC | 275 LPD", image: "/images/fpc-275.jpg", description: "Higher non-pressurized FPC capacity with consistent delivery and low losses.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
-  { id: 10, name: "FPC Non-Press 300 LPD", category: "solar", price: 73000, warranty: "5 Years", efficiency: "FPC | 300 LPD", image: "/images/fpc-300.jpg", description: "300 LPD FPC suited for frequent draw-offs and steady temperature output.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  { id: 8, name: "FPC Non-Pressurized 220 LPD", category: "solar", price: 56000, warranty: "5 Years", efficiency: "FPC | 220 LPD", image: "/images/fpc-220.jpg", description: "Flat Plate Collector with durable absorber and stable performance in varied climates.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  { id: 9, name: "FPC Non-Pressurized 275 LPD", category: "solar", price: 61000, warranty: "5 Years", efficiency: "FPC | 275 LPD", image: "/images/fpc-275.jpg", description: "Higher non-pressurized FPC capacity with consistent delivery and low losses.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
+  { id: 10, name: "FPC Non-Pressurized 300 LPD", category: "solar", price: 73000, warranty: "5 Years", efficiency: "FPC | 300 LPD", image: "/images/fpc-300.jpg", description: "300 LPD FPC suited for frequent draw-offs and steady temperature output.", features: ["Non-pressurized FPC", "Durable absorber", "Insulated tank", "Stable performance"] },
 
   // Solar: FPC Pressurized
   { id: 11, name: "FPC Pressurized 220 LPD", category: "solar", price: 62000, warranty: "5 Years", efficiency: "FPC | 220 LPD | Pressurized", image: "/images/fpc-p-220.jpeg", description: "Pressurized FPC system for high line pressure homes and premium bath fittings.", features: ["Pressurized FPC", "High line pressure", "Durable tank", "Stable output"] },
@@ -153,10 +153,10 @@ const ProductCard = memo(function ProductCard({ product, onSelect }) {
             <div className="text-base sm:text-lg font-bold text-green-600">{product.efficiency}</div>
             <div className="text-xs text-gray-500">{getPrimarySpecLabel(product.category)}</div>
           </div>
-          <div className="text-center">
+          {/* <div className="text-center">
             <div className="text-base sm:text-lg font-bold text-blue-600">{product.warranty}</div>
-            <div className="text-xs text-gray-500">Warranty</div>
-          </div>
+            <div className="text-xs text-gray-500">Guarentee</div>
+          </div> */}
         </div>
 
         <div className="flex items-center justify-between mb-4">
@@ -224,10 +224,10 @@ const CommercialCard = memo(function CommercialCard({ product, onSelect, onQuote
             <div className="text-base sm:text-lg font-bold text-green-600">{product.efficiency}</div>
             <div className="text-xs text-gray-500">Specification</div>
           </div>
-          <div className="text-center">
+          {/* <div className="text-center">
             <div className="text-base sm:text-lg font-bold text-blue-600">{product.warranty}</div>
             <div className="text-xs text-gray-500">Warranty</div>
-          </div>
+          </div> */}
         </div>
 
         {hasOptions && (
