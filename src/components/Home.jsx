@@ -68,9 +68,9 @@ export default function HomeSection() {
 
   const stats = [
     { number: "100–3000 LPD", label: "Solar Capacities", icon: "📦" },
-    // { number: "50 mm", label: "PUF Insulation", icon: "🧊" },
-    { number: "1200–1600", label: "m³/hr Suction", icon: "💨" },
     { number: "24/7", label: "After‑Sales Support", icon: "🔧" },
+    { number: "Up to 5000 LPH", label: "Water Softeners / RO Plants", icon: "💧" },
+    { number: "HD & IP", label: "CCTV Surveillance", icon: "📹" },
   ];
 
   return (
@@ -158,7 +158,7 @@ export default function HomeSection() {
 
         {/* Stats */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
           variants={itemVariants}
         >
           {stats.map((stat, idx) => (

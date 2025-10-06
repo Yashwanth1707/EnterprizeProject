@@ -95,7 +95,7 @@ export default function Services() {
       iconBg: "bg-green-100 ring-1 ring-green-200",
       icon: "✅",
       title: "Quality Guarantee",
-      description: "10-year warranty on premium installations with trusted components.",
+      description: "Expertly installed using trusted, high-quality components for lasting performance.",
     },
     {
       iconBg: "bg-blue-100 ring-1 ring-blue-200",
