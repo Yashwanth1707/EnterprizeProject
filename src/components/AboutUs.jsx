@@ -14,7 +14,7 @@ export default function AboutUs() {
                 <img
                   src="images/pro_pic.png"
                   alt="Keerthi CM"
-                  className="w-full h-full object-cover object-[50%_18%]"
+                  className="w-full h-full object-cover object-[50%_13%]"
                   loading="lazy"
                 />
               </div>
