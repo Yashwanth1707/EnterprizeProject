@@ -1689,11 +1689,10 @@ export default function ProductList() {
                   setSelectedCategory(f.key);
                   setExpanded(false);
                 }}
-                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${
-                  selectedCategory === f.key
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${selectedCategory === f.key
                     ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
                     : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
-                }`}
+                  }`}
                 aria-pressed={selectedCategory === f.key}
               >
                 {f.label}
@@ -1715,9 +1714,8 @@ export default function ProductList() {
             onClick={() => setExpanded((v) => !v)}
             onKeyDown={onToggleExpandedKey}
             aria-pressed={expanded}
-            className={`px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r ${
-              expanded ? "from-gray-700 to-gray-900" : "from-indigo-600 to-purple-600"
-            } shadow hover:shadow-lg transition-all duration-300`}
+            className={`px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r ${expanded ? "from-gray-700 to-gray-900" : "from-indigo-600 to-purple-600"
+              } shadow hover:shadow-lg transition-all duration-300`}
           >
             {expanded ? "Show Less" : "Show More"}
           </button>
@@ -1840,9 +1838,8 @@ export default function ProductList() {
                   className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(selectedProduct.category)} opacity-0`}
                 />
                 <div
-                  className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${
-                    getCategoryBadge(selectedProduct.category).bg
-                  }`}
+                  className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${getCategoryBadge(selectedProduct.category).bg
+                    }`}
                 >
                   {getCategoryBadge(selectedProduct.category).icon}{" "}
                   {getCategoryBadge(selectedProduct.category).label}
@@ -1866,8 +1863,8 @@ export default function ProductList() {
                       {selectedProduct.category === "chimney"
                         ? "Max Suction"
                         : selectedProduct.category === "purifier"
-                        ? "Storage/Flow"
-                        : "Capacity"}
+                          ? "Storage/Flow"
+                          : "Capacity"}
                     </div>
                   </div>
                   <div className="bg-blue-50 p-4 rounded-lg text-center">
@@ -1974,8 +1971,12 @@ export default function ProductList() {
         )}
 
         {/* Contact Modal */}
-        {contactModalOpen && <ContactForm onClose={() => setContactModalOpen(false)} />}
-      </div>
+        {contactModalOpen && (
+          <ContactForm
+            onClose={() => setContactModalOpen(false)}
+            selectedProduct={selectedProduct}
+          />
+        )}      </div>
     </section>
   );
 }
