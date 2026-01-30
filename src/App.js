@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa"; // npm i react-icons
+import { FaWhatsapp } from "react-icons/fa";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ProductList from "./components/ProductList";
 import HomeSection from "./components/Home";
+import ProductList from "./components/ProductList";
+import { products } from "./products";
+import ProductScroller from "./components/ProductScroller";
 import Services from "./components/Services";
 import AboutUs from "./components/AboutUs";
 
@@ -42,9 +45,9 @@ function ScrollToTopButton() {
 }
 
 function WhatsAppButton() {
-  const phone = "918310280310"; // TODO: change to your WhatsApp number (countrycode+number; no +, spaces) [web:1]
+  const phone = "918310280310";
   const message = "Hi! I want to know more about your products/services.";
-  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`; // click-to-chat + URL-encoded text [web:1]
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   return (
     <a
@@ -57,7 +60,6 @@ function WhatsAppButton() {
                  hover:bg-green-600 active:scale-95 transition"
       style={{
         zIndex: 1001,
-        // keep it above the gesture bar and above the scroll-to-top button
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 84px)",
       }}
     >
@@ -66,10 +68,9 @@ function WhatsAppButton() {
   );
 }
 
-function App() {
+export default function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
-  const openContactModal = () => setContactModalOpen(true);
   const closeContactModal = () => setContactModalOpen(false);
 
   const sectionVariants = {
@@ -77,14 +78,19 @@ function App() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
+  // Use products from ProductList export (optionally remove commercial)
+  const scrollerItems = products.filter((p) => p.category !== "solar-commercial");
+
   return (
     <div className="min-h-dvh flex flex-col">
-      <Header
-        isContactModalOpen={contactModalOpen}
-        onCloseContactModal={closeContactModal}
-      />
+      <Header isContactModalOpen={contactModalOpen} onCloseContactModal={closeContactModal} />
 
       <main className="flex-1">
+           {/* Product Scroller */}
+         
+   <div className="mt-8 sm:mt-10">
+                           <ProductScroller items={scrollerItems} targetId="products" />
+            </div>
         <motion.section
           id="home"
           className="min-h-dvh bg-blue-50 p-6 sm:p-10"
@@ -92,7 +98,11 @@ function App() {
           animate="visible"
           variants={sectionVariants}
         >
-          <HomeSection />
+          <div className="max-w-7xl mx-auto">
+            <HomeSection />
+
+         
+          </div>
         </motion.section>
 
         <motion.section
@@ -103,10 +113,7 @@ function App() {
           viewport={{ once: true, amount: 0.08, margin: "0px 0px -10% 0px" }}
           variants={sectionVariants}
         >
-          <ProductList
-            isContactModalOpen={contactModalOpen}
-            onCloseContactModal={closeContactModal}
-          />
+          <ProductList isContactModalOpen={contactModalOpen} onCloseContactModal={closeContactModal} />
         </motion.section>
 
         <motion.section
@@ -138,5 +145,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
