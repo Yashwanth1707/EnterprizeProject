@@ -71,7 +71,7 @@ const ProductCard = memo(function ProductCard({ product, onSelect }) {
       }}
       aria-label={`View details for ${product.name}`}
     >
-      <div className="relative overflow-hidden h-44 sm:h-48 md:h-52 bg-white">
+      <div className="relative overflow-hidden h-44 sm:h-48 md:h-52 bg-white  p-5 sm:p-4">
         <img
           src={product.image}
           alt={product.name}
