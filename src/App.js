@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa"; // npm i react-icons
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
@@ -12,10 +13,9 @@ function ScrollToTopButton() {
 
   useEffect(() => {
     function onScroll() {
-      // Show after a small scroll (e.g., > 60px)
       setVisible(window.scrollY > 60);
     }
-    onScroll(); // initialize on mount
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -33,12 +33,36 @@ function ScrollToTopButton() {
       className="fixed right-4 sm:right-6 bg-pink-600 text-white p-4 rounded-full shadow-lg hover:bg-pink-700 transition"
       style={{
         zIndex: 1000,
-        // Lift above iOS home bar and Android gesture bar
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)",
       }}
     >
       ▲
     </button>
+  );
+}
+
+function WhatsAppButton() {
+  const phone = "918310280310"; // TODO: change to your WhatsApp number (countrycode+number; no +, spaces) [web:1]
+  const message = "Hi! I want to know more about your products/services.";
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`; // click-to-chat + URL-encoded text [web:1]
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on WhatsApp"
+      className="fixed right-4 sm:right-6 flex items-center justify-center
+                 w-14 h-14 rounded-full bg-green-500 text-white shadow-lg
+                 hover:bg-green-600 active:scale-95 transition"
+      style={{
+        zIndex: 1001,
+        // keep it above the gesture bar and above the scroll-to-top button
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 84px)",
+      }}
+    >
+      <FaWhatsapp size={30} />
+    </a>
   );
 }
 
@@ -54,14 +78,13 @@ function App() {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col"> {/* dynamic viewport-safe root */} 
+    <div className="min-h-dvh flex flex-col">
       <Header
         isContactModalOpen={contactModalOpen}
         onCloseContactModal={closeContactModal}
       />
 
       <main className="flex-1">
-        {/* Home: animate immediately */}
         <motion.section
           id="home"
           className="min-h-dvh bg-blue-50 p-6 sm:p-10"
@@ -72,7 +95,6 @@ function App() {
           <HomeSection />
         </motion.section>
 
-        {/* Products: whileInView with mobile-friendly threshold */}
         <motion.section
           id="products"
           className="min-h-dvh bg-white p-6 sm:p-10"
@@ -87,7 +109,6 @@ function App() {
           />
         </motion.section>
 
-        {/* Services */}
         <motion.section
           id="services"
           className="min-h-dvh bg-blue-100 p-6 sm:p-10"
@@ -99,7 +120,6 @@ function App() {
           <Services />
         </motion.section>
 
-        {/* About */}
         <motion.section
           id="about"
           className="min-h-dvh bg-blue-50 p-6 sm:p-10"
@@ -113,6 +133,7 @@ function App() {
       </main>
 
       <Footer />
+      <WhatsAppButton />
       <ScrollToTopButton />
     </div>
   );

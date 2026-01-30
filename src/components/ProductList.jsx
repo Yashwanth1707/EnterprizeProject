@@ -57,7 +57,7 @@ export const products = [
     name: "Heavy Plus 110 LPD",
     category: "solar",
     price: 16000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 110 LPD",
     image: "/images/hp110.jpeg",
     description:
@@ -74,12 +74,12 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "110 LPD",
       suitableFor: "2–3 family members / 1 bathroom",
-      tankMaterial: "High-Grade Steel (Inner), Galvanized (Outer)",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm (Polyurethane Foam)",
       collarTubes: "Number of tubes depends on capacity",
       standFrame: "Galvanized & Power Coated",
       weldingMethod: "Seamless & Non-Welding Technology",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       idealFor: "North/South Indian homes, annual sunshine",
       installation: "Rooftop, needs direct sunlight, includes basic plumbing",
     },
@@ -102,7 +102,7 @@ export const products = [
     name: "Heavy Plus 165 LPD",
     category: "solar",
     price: 21000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 165 LPD",
     image: "/images/hp165.png",
     description:
@@ -120,10 +120,10 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "165 LPD",
       suitableFor: "3–4 family members / 2 bathrooms (part-time)",
-      tankMaterial: "High-Grade Steel (Inner), Galvanized (Outer)",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm (Polyurethane Foam)",
       standFrame: "Galvanized & Power Coated",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       idealFor: "Bengaluru, Tamil Nadu, Andhra Pradesh regions",
       installation: "Rooftop with 30° south-facing angle preferred",
     },
@@ -142,7 +142,7 @@ export const products = [
     name: "Heavy Plus 200 LPD",
     category: "solar",
     price: 24500,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 200 LPD",
     image: "/images/hp110.jpeg",
     description:
@@ -160,10 +160,10 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "200 LPD",
       suitableFor: "4–5 family members / 2 bathrooms",
-      tankMaterial: "High-Grade Steel with Prime Guard Coating",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm",
       standFrame: "Galvanized Power Coated Steel",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       connectors: "Stainless Steel",
       fasteners: "Stainless Steel",
       idealFor: "Middle-class homes, VPOs, small colonies",
@@ -184,7 +184,7 @@ export const products = [
     name: "Heavy Plus 220 LPD",
     category: "solar",
     price: 25500,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 220 LPD",
     image: "/images/hp220.webp",
     description: "Extra headroom for larger households and peak-hour demand. Maintains comfortable water temperature even with multiple simultaneous uses.",
@@ -201,11 +201,11 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "220 LPD",
       suitableFor: "4–6 family members / 2+ bathrooms",
-      tankMaterial: "2mm H.R. Steel with Co2 Welding & Prime Guard Coating",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm Polyurethane Foam",
       standFrame: "Galvanized Power Coated",
       pressureRating: "Normal (Non-Pressurized)",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       ideal: "Duplex homes, farms, small guest houses",
     },
     faqs: [
@@ -222,7 +222,7 @@ export const products = [
     name: "Heavy Plus 270 LPD",
     category: "solar",
     price: 31000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 270 LPD",
     image: "/images/hp220.webp",
     description: "Higher capacity system for duplexes or two bathrooms running in parallel. Consistent hot water supply throughout peak usage hours.",
@@ -239,10 +239,10 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "270 LPD",
       suitableFor: "6–7 family members / 2–3 bathrooms",
-      tankMaterial: "High-Grade Steel with Prime Guard Coating",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm",
       standFrame: "Galvanized Power Coated Steel",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       idealFor: "Duplex homes, villas, guest houses, small commercial",
     },
     faqs: [
@@ -256,7 +256,7 @@ export const products = [
     name: "Heavy Plus 300 LPD",
     category: "solar",
     price: 38000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 300 LPD",
     image: "/images/hp300.jpeg",
     description:
@@ -274,11 +274,11 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "300 LPD",
       suitableFor: "7–8 family members / 3 bathrooms",
-      tankMaterial: "High-Grade Steel with Co2 Welding",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm Premium Grade",
       standFrame: "Galvanized Power Coated Heavy-Duty",
       pressureRating: "Normal Non-Pressurized",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       warranty: "5 Years on Tank, 2 Years on Tubes",
       ideal: "Villas, large families, small resorts",
     },
@@ -296,7 +296,7 @@ export const products = [
     name: "Heavy Plus 500 LPD",
     category: "solar",
     price: 53000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "ETC | 500 LPD",
     image: "/images/hp500.jpeg",
     description:
@@ -314,11 +314,11 @@ export const products = [
       collectorType: "ETC (Evacuated Tube)",
       capacity: "500 LPD",
       suitableFor: "10+ family members / Large villa / Small commercial",
-      tankMaterial: "High-Grade Steel with Co2 Welding & Prime Guard",
+      tankMaterial: "Glass Lining (Inner), Galvanized (Outer)",
       insulation: "PUF 50mm Premium Grade",
       standFrame: "Galvanized Power Coated Heavy-Duty",
       pressureRating: "Normal (Non-Pressurized)",
-      maxTemperature: "70°C",
+      maxTemperature: "65°C - 70°C",
       warranty: "5 Years on Tank, 2 Years on Tubes",
       ideal: "Villas, resorts, guest houses, small hotels",
     },
@@ -334,7 +334,7 @@ export const products = [
     name: "FPC Non-Pressurized 220 LPD",
     category: "solar",
     price: 56000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 220 LPD",
     image: "/images/fpc-220.jpg",
     description:
@@ -382,7 +382,7 @@ export const products = [
     name: "FPC Non-Pressurized 275 LPD",
     category: "solar",
     price: 61000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 275 LPD",
     image: "/images/fpc-275.jpg",
     description:
@@ -417,7 +417,7 @@ export const products = [
     name: "FPC Non-Pressurized 300 LPD",
     category: "solar",
     price: 73000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 300 LPD",
     image: "/images/fpc-300.jpg",
     description:
@@ -452,7 +452,7 @@ export const products = [
     name: "FPC Pressurized 220 LPD",
     category: "solar",
     price: 62000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 220 LPD | Pressurized",
     image: "/images/fpc-p-220.jpeg",
     description:
@@ -488,7 +488,7 @@ export const products = [
     name: "FPC Pressurized 275 LPD",
     category: "solar",
     price: 71000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 275 LPD | Pressurized",
     image: "/images/275-FPC.jpg",
     description:
@@ -522,7 +522,7 @@ export const products = [
     name: "FPC Pressurized 300 LPD",
     category: "solar",
     price: 82000,
-    warranty: "5 Years",
+    warranty: "20 Years (Terms & Conditions Apply)",
     efficiency: "FPC | 300 LPD | Pressurized",
     image: "/images/fpc-p-300.jpg",
     description:
@@ -1690,8 +1690,8 @@ export default function ProductList() {
                   setExpanded(false);
                 }}
                 className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${selectedCategory === f.key
-                    ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
-                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+                  : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
                   }`}
                 aria-pressed={selectedCategory === f.key}
               >
@@ -1827,13 +1827,15 @@ export default function ProductList() {
 
               {/* Product Image */}
               <div className="relative h-52 sm:h-64 bg-white">
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  className="w-full h-full object-contain object-center"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div className="w-full h-full p-5 sm:p-5">
+                  <img
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-full object-contain object-center"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(selectedProduct.category)} opacity-0`}
                 />
