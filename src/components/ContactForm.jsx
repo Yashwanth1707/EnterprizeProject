@@ -1,48 +1,8 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
+import { products } from '../products'
 
-const inquiryOptions = [
-  // Solar heaters (Supreme)
-  "Supreme Solar GL ETC 200 LPD",
-  "Supreme Solar FPC 250 LPD",
-  "Supreme Solar ETC 300 LPD",
-  "Commercial Solar Water Heater 3000 LPD",
-  "Heat Pump Water Heater 200L",
-
-  // Kitchen chimneys (Supreme)
-  "Supreme ECO H4 60 cm Auto-Clean",
-  "Supreme FIGO XL 90 cm Touch",
-  "Supreme CROWN X 60 cm",
-
-  // Water purifiers
-  "KENT Grand Plus RO+UV+UF+TDS 8L",
-  "Aquaguard RO+UV+UF 7L",
-  "Purocis RO+UV 8L",
-
-  // Luminous UPS/Inverters
-  "Luminous Zelio+ 1100 Pure Sine Wave",
-  "Luminous Eco Watt Neo 1050",
-  "Luminous Li-ON 1250 (In-built Lithium)",
-
-  // Generic solar/geyser items
-  "Solar Water Heater 200L",
-  "Solar Water Heater 100L",
-  "Solar Water Heater 300L",
-
-  // Services
-  "Installation Service",
-  "Maintenance & Repair",
-  "System Upgrade",
-  "Consultation & Design",
-  "Emergency Support",
-  "Performance Monitoring",
-
-  // Extra services
-  "CCTV Camera Installation",
-  "UPS Battery Replacement",
-  "Chimney Deep Cleaning",
-  "Water Quality/TDS Check",
-];
+const inquiryOptions = products.map(product => product.name);
 
 export default function ContactForm({ onClose, selectedProduct }) {
   const [form, setForm] = useState({
@@ -107,6 +67,10 @@ export default function ContactForm({ onClose, selectedProduct }) {
         inquiry: "",
         message: "",
       });
+
+      setTimeout(() => {
+        onClose();
+      }, 1500);
     } catch (error) {
       console.error("EmailJS error:", error);
       setStatus({
@@ -231,9 +195,8 @@ export default function ContactForm({ onClose, selectedProduct }) {
 
           {status && (
             <p
-              className={`text-center font-semibold ${
-                status.success ? "text-green-600" : "text-red-600"
-              }`}
+              className={`text-center font-semibold ${status.success ? "text-green-600" : "text-red-600"
+                }`}
             >
               {status.message}
             </p>
