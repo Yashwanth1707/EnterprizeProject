@@ -18,6 +18,10 @@ const getCategoryColor = (category) => {
       return "from-violet-500 to-indigo-600";
     case "solar-commercial":
       return "from-amber-500 to-rose-600";
+    case "rooftop-solar":
+      return "from-orange-500 to-yellow-500";
+    case "heat-pump":
+      return "from-cyan-500 to-blue-700";
     default:
       return "from-gray-400 to-gray-600";
   }
@@ -35,6 +39,10 @@ const getCategoryBadge = (category) => {
       return { icon: "🔌", label: "Luminous UPS", bg: "bg-violet-100 text-violet-800" };
     case "solar-commercial":
       return { icon: "🏭", label: "Commercial", bg: "bg-amber-100 text-amber-800" };
+    case "rooftop-solar":
+      return { icon: "⚡", label: "Rooftop Solar", bg: "bg-orange-100 text-orange-800" };
+    case "heat-pump":
+      return { icon: "🔥", label: "Heat Pump", bg: "bg-cyan-100 text-cyan-800", };
     default:
       return { icon: "🛠️", label: "Product", bg: "bg-gray-100 text-gray-800" };
   }
@@ -288,6 +296,8 @@ export default function ProductList() {
     { key: "chimney", label: "🏠 Supreme Chimneys" },
     { key: "purifier", label: "💧 Water Purifiers" },
     { key: "ups", label: "🔌 Luminous UPS" },
+    { key: "rooftop-solar", label: "⚡ Rooftop Solar" },
+    { key: "heat-pump", label: "🔥 Heat Pumps" },
   ];
 
   return (
@@ -303,6 +313,12 @@ export default function ProductList() {
             Supreme solar solutions, kitchen chimneys, Kent & Aquaguard purifiers, and Luminous UPS — all optimized for
             Indian homes.
           </p>
+          <div className="mb-6">
+            <p className="text-xs sm:text-sm text-gray-500 italic">
+              * Product prices shown on the website may vary depending on current market trends,
+              installation requirements, and brand availability.
+            </p>
+          </div>
 
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
@@ -313,11 +329,10 @@ export default function ProductList() {
                   setSelectedCategory(f.key);
                   setExpanded(false);
                 }}
-                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${
-                  selectedCategory === f.key
-                    ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
-                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
-                }`}
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${selectedCategory === f.key
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+                  : "bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300"
+                  }`}
                 aria-pressed={selectedCategory === f.key}
               >
                 {f.label}
@@ -339,9 +354,8 @@ export default function ProductList() {
             onClick={() => setExpanded((v) => !v)}
             onKeyDown={onToggleExpandedKey}
             aria-pressed={expanded}
-            className={`px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r ${
-              expanded ? "from-gray-700 to-gray-900" : "from-indigo-600 to-purple-600"
-            } shadow hover:shadow-lg transition-all duration-300`}
+            className={`px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r ${expanded ? "from-gray-700 to-gray-900" : "from-indigo-600 to-purple-600"
+              } shadow hover:shadow-lg transition-all duration-300`}
           >
             {expanded ? "Show Less" : "Show More"}
           </button>
@@ -410,9 +424,8 @@ export default function ProductList() {
                 <div className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(selectedProduct.category)} opacity-0`} />
 
                 <div
-                  className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${
-                    getCategoryBadge(selectedProduct.category).bg
-                  }`}
+                  className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold ${getCategoryBadge(selectedProduct.category).bg
+                    }`}
                 >
                   {getCategoryBadge(selectedProduct.category).icon} {getCategoryBadge(selectedProduct.category).label}
                 </div>

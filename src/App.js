@@ -11,6 +11,7 @@ import ProductScroller from "./components/ProductScroller";
 import Services from "./components/Services";
 import AboutUs from "./components/AboutUs";
 
+
 function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
 
@@ -33,10 +34,9 @@ function ScrollToTopButton() {
     <button
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className="fixed right-4 sm:right-6 bg-pink-600 text-white p-4 rounded-full shadow-lg hover:bg-pink-700 transition"
+      className="fixed right-4 sm:right-6 bottom-10 sm:bottom-11 bg-pink-600 text-white w-10 h-10 text-sm rounded-full shadow-lg hover:bg-pink-700 transition flex items-center justify-center"
       style={{
         zIndex: 1000,
-        bottom: "calc(env(safe-area-inset-bottom, 0px) + 16px)",
       }}
     >
       ▲
@@ -55,9 +55,7 @@ function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed right-4 sm:right-6 flex items-center justify-center
-                 w-14 h-14 rounded-full bg-green-500 text-white shadow-lg
-                 hover:bg-green-600 active:scale-95 transition"
+      className="fixed right-4 sm:right-6 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 active:scale-95 transition"
       style={{
         zIndex: 1001,
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 84px)",
@@ -85,12 +83,13 @@ export default function App() {
     <div className="min-h-dvh flex flex-col">
       <Header isContactModalOpen={contactModalOpen} onCloseContactModal={closeContactModal} />
 
+      <LaunchBanner />
       <main className="flex-1">
-           {/* Product Scroller */}
-         
-   <div className="mt-8 sm:mt-10">
-                           <ProductScroller items={scrollerItems} targetId="products" />
-            </div>
+        {/* Product Scroller */}
+
+        <div className="mt-8 sm:mt-10">
+          <ProductScroller items={scrollerItems} targetId="products" />
+        </div>
         <motion.section
           id="home"
           className="min-h-dvh bg-blue-50 p-6 sm:p-10"
@@ -101,7 +100,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto">
             <HomeSection />
 
-         
+
           </div>
         </motion.section>
 
@@ -145,3 +144,76 @@ export default function App() {
     </div>
   );
 }
+
+
+function LaunchBanner() {
+  const [open, setOpen] = useState(true);
+
+  if (!open) return null;
+
+  return (
+    <div className="relative bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white shadow-lg overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute -top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-10 w-52 h-52 bg-white rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
+        <div className="flex items-center justify-between gap-4">
+
+          {/* Left Content */}
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-3">
+
+              <span className="bg-white/20 backdrop-blur px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
+                ⚡ NEW LAUNCH
+              </span>
+
+              <h2 className="text-sm sm:text-lg md:text-xl font-bold">
+                Rooftop Solar Solutions Now Available
+              </h2>
+
+              <span className="hidden sm:inline text-white/90 text-sm">
+                1kW • 2kW • 3kW • 5kW • Hybrid Systems
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm text-yellow-50 mt-2 max-w-3xl">
+              Reduce electricity bills with our new rooftop solar systems for homes,
+              villas, offices, schools, and commercial buildings.
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="#products"
+              className="bg-white text-orange-600 px-5 py-2 rounded-lg font-bold hover:bg-yellow-50 transition"
+            >
+              Explore
+            </a>
+
+            <a
+              href="https://wa.me/918310280310"
+              target="_blank"
+              rel="noreferrer"
+              className="border border-white/50 px-5 py-2 rounded-lg font-semibold hover:bg-white/10 transition"
+            >
+              Get Quote
+            </a>
+          </div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => setOpen(false)}
+            className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-xl transition shrink-0"
+            aria-label="Close banner"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
